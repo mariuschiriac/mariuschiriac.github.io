@@ -1,6 +1,7 @@
 .gallery-col{
 }
 .gallery-div{
+	transition: all .3s;
 	margin: 16px;
 }
 .gallery-div:hover{
