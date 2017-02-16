@@ -1,4 +1,8 @@
-.gallery-col{
+.my-header{
+	height: 20px !important;
+}
+.secondary{
+	display: none;
 }
 .gallery-div{
 	transition: all .3s;
@@ -15,6 +19,12 @@
 	text-align: center;
 	color: #EEE;
 	background-color: rgb(235, 56, 18);
+}
+.text-faded{
+	font-size: 12px !important;
+}
+.project-name{
+	font-size: 14px !important;
 }
 #super-hidden{
 	display: none;
