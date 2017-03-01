@@ -1,0 +1,3 @@
+# Ignore all sass dependecies
+*.map
+.sass-cache

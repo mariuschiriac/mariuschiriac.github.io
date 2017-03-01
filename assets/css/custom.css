@@ -1,0 +1,21 @@
+@font-face{
+    font-family: 'rokkittregular';
+    src: url('../fonts/rokkitt-webfont.woff2') format('woff2'),
+         url('../fonts/rokkitt-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+html{
+  padding: 0 3em;
+  height: 100%;
+  background-color: #E0E3FF;
+  background-attachment: fixed;
+}
+html, body{
+  margin: 0;
+  font-family: 'rokkittregular', sans-serif;
+  font-size: 1em;
+}
+body{
+  padding: 0;
+}
