@@ -19,3 +19,93 @@ html, body{
 body{
   padding: 0;
 }
+#sidebar{
+  position: fixed;
+  width: calc(17.5% - 1.5em);
+  padding: 1.5em 0.75em;
+  height: 100%;
+  text-align: center;
+  text-transform: uppercase;
+}
+.square-box-b{
+  width: 100%;
+}
+.square-box-b:before{
+  padding-top: 100%;
+}
+.square-box-b, .square-box-s{
+	position: relative;
+}
+.square-box-b:before, .square-box-s:before{
+	content: "";
+	display: block;
+}
+.square-box-s{
+  width: 3em;
+}
+.square-box-s:before{
+  padding-top: 3em;
+}
+.square{
+	position: absolute;
+	top: 0;
+  right: 0;
+	bottom: 0;
+  left: 0;
+}
+#myavatar{
+  background-image: url("../images/avatar.jpg");
+  background-size: 100%;
+  border-radius: 50%;
+  border: 0.5em solid #BDC3C7;
+}
+#myname{
+  margin: 0.3em 0;
+  border-bottom: 4px solid #3B59A2;
+}
+.bigfont{
+  font-size: 3em;
+}
+.darkfont{
+  color: #34495E;
+}
+.smallfont{
+  font-size: 1.4em;
+}
+.lightfont{
+  color: #7F8C8D;
+}
+#myjob{
+  margin-bottom: 1em;
+}
+.hirebutton{
+  display: inline-block;
+  margin: 0 0.25em;
+  line-height: 3em;
+  background-color: #3B59A2;
+  border-radius: 4px;
+  -webkit-transition: all 0.4s ease-in-out 0s;
+  transition: all 0.4s ease-in-out 0s;
+}
+.hirebutton:hover{
+  cursor: pointer;
+  background-color: #FFF;
+  -webkit-transition: all 0.4s ease-in-out 0s;
+  transition: all 0.4s ease-in-out 0s;
+}
+.hirebutton > a{
+  text-transform: none;
+  color: #FFF;
+  -webkit-transition: all 0.4s ease-in-out 0s;
+  transition: all 0.4s ease-in-out 0s;
+}
+.hirebutton > a:hover{
+  color: #3B59A2;
+  -webkit-transition: all 0.4s ease-in-out 0s;
+  transition: all 0.4s ease-in-out 0s;
+}
+#main-content{
+  width: calc(81.25% - 1.5em);
+  padding: 1.5em 0.75em;
+  float: right;
+}
