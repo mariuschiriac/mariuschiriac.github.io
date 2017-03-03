@@ -6,7 +6,7 @@
     font-style: normal;
 }
 html{
-  padding: 0 3em;
+  padding: 0 5em;
   height: 100%;
   background-color: #E0E3FF;
   background-attachment: fixed;
@@ -14,15 +14,14 @@ html{
 html, body{
   margin: 0;
   font-family: 'rokkittregular', sans-serif;
-  font-size: 1em;
 }
 body{
   padding: 0;
 }
 #sidebar{
   position: fixed;
-  width: calc(17.5% - 1.5em);
-  padding: 1.5em 0.75em;
+  width: calc(18% - 3em);
+  padding: 1.5em;
   height: 100%;
   text-align: center;
   text-transform: uppercase;
@@ -75,6 +74,9 @@ body{
 .lightfont{
   color: #7F8C8D;
 }
+.whitefont{
+  color: #FFF;
+}
 #myjob{
   margin-bottom: 1em;
 }
@@ -94,7 +96,6 @@ body{
   transition: all 0.4s ease-in-out 0s;
 }
 .hirebutton > a{
-  text-transform: none;
   color: #FFF;
   -webkit-transition: all 0.4s ease-in-out 0s;
   transition: all 0.4s ease-in-out 0s;
@@ -105,7 +106,95 @@ body{
   transition: all 0.4s ease-in-out 0s;
 }
 #main-content{
-  width: calc(81.25% - 1.5em);
-  padding: 1.5em 0.75em;
+  width: calc(80.75% - 3em);
+  padding: 0 1.5em;
   float: right;
+}
+#navbar{
+  padding: 0.4em 0;
+  position: relative;
+  background-color: #3B59A2;
+  text-align: center;
+  border-radius: 0 0 10px 10px;
+}
+#navbar > a > div{
+  display: inline-block;
+  margin: 0 1em;
+  padding: 0.25em 0.75em;
+  text-transform: capitalize;
+  color: #FFF;
+  font-weight: bold;
+  font-size: 1.4em;
+  border-radius: 5px;
+  -webkit-transition: all 0.4s ease-in-out 0s;
+  transition: all 0.4s ease-in-out 0s;
+}
+#navbar > a > div:hover{
+  background-color: #204090;
+  -moz-box-shadow:    inset 0 0 8px #001550;
+  -webkit-box-shadow: inset 0 0 8px #001550;
+  box-shadow:         inset 0 0 8px #001550;
+  -webkit-transition: all 0.4s ease-in-out 0s;
+  transition: all 0.4s ease-in-out 0s;
+}
+#navbar > a:link{
+  text-decoration: none;
+}
+#navbar > a:visited{
+  text-decoration: none;
+}
+#navbar > a:hover{
+  text-decoration: none;
+}
+#navbar > a:active{
+  text-decoration: none;
+}
+.fa-phone{
+  -webkit-transition: all 0.4s ease-in-out 0s;
+  transition: all 0.4s ease-in-out 0s;
+}
+.fa-phone:hover{
+
+}
+#doc{
+  margin-top: 3em;
+  padding: 1.75em 6em 10em 2.75em;
+  background-color: #FAFAFA;
+  -moz-box-shadow:    0 0 2px #C0C3DF;
+  -webkit-box-shadow: 0 0 2px #C0C3DF;
+  box-shadow:         0 0 2px #C0C3DF;
+}
+#doc > span{
+  margin-left: 1.3em;
+  text-transform: uppercase;
+  font-size: 1.8em;
+  font-weight: bold;
+}
+#doc > div{
+  margin-bottom: 2em;
+  padding: 1.25em;
+  background-color: #FFF;
+  border: 1px solid #AAA;
+  border-radius: 4px;
+  -moz-box-shadow:    0 0 4px #AFAFAF;
+  -webkit-box-shadow: 0 0 4px #AFAFAF;
+  box-shadow:         0 0 4px #AFAFAF;
+}
+.divtitle:first-letter{
+  text-transform: uppercase;
+}
+.divtitle{
+  font-size: 1.8em;
+}
+.divhr{
+  width: 100px;
+  margin-bottom: 0.6em;
+  border-bottom: 1px solid #7A8F9D;
+}
+.divcontent{
+  font-size: 1.2em;
+  font-weight: lighter;
+}
+#footer{
+  height: 260px;
 }

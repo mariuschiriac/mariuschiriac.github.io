@@ -35,10 +35,70 @@
 		</div>
 	</div>
 	<div id="main-content">
-		<nav id="navbar"></nav>
-		<div id="aboutme"></div>
-		<div id="getintouch"></div>
-		<div id="workexp"></div>
+		<nav id="navbar">
+			<a href="#aboutme">
+				<div>
+					<i class="fa fa-user"></i>
+					<span> about me</span>
+				</div>
+			</a>
+			<a href="#getintouch">
+				<div>
+					<i class="fa fa-phone"></i>
+				 	<span> get in touch</span>
+				 </div>
+			</a>
+			<a href="#workexp">
+				<div>
+					<i class="fa fa-bar-chart"></i>
+					<span> work experience</span>
+				</div>
+			</a>
+			<a href="/projects.html">
+				<div>
+					<i class="fa fa-gear"></i>
+					<span> projects</span>
+				</div>
+			</a>
+		</nav>
+		<div id="doc">
+			<span class="darkfont">about me</span>
+			<div id="aboutme">
+				<div class="darkfont divtitle">hello, I am MARIUS CHIRIAC</div>
+				<div class="divhr"></div>
+				<div class="lightfont divcontent">
+					Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+				</div>
+			</div>
+			<span class="darkfont">contacts</span>
+			<div id="getintouch">
+				<div class="darkfont divtitle"></div>
+				<div class="divhr"></div>
+				<div class="lightfont divcontent"></div>
+			</div>
+			<span class="darkfont">work</span>
+			<div id="workexp">
+				<div class="darkfont divtitle"></div>
+				<div class="divhr"></div>
+				<div class="lightfont divcontent"></div>
+			</div>
+		</div>
+		<div id="footer"></div>
+			<script>
+				function initMap() {
+					var myposition = {lat: 45.4538236, lng: 8.5807615};
+					var map = new google.maps.Map(document.getElementById('footer'), {
+						zoom: 4,
+						center: myposition
+					});
+					var marker = new google.maps.Marker({
+						position: myposition,
+						map: map
+					});
+				}
+			</script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCCjcHNBhufnjfhbrLaYg3VNzAjKSw6cCA&callback=initMap">
+    </script>
 	</div>
 </body>
 </html>
