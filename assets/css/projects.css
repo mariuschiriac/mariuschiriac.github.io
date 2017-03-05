@@ -1,0 +1,148 @@
+@font-face{
+    font-family: 'rokkittregular';
+    src: url('../fonts/rokkitt-webfont.woff2') format('woff2'),
+         url('../fonts/rokkitt-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+html{
+  height: 100%;
+  background-color: #444;
+  background-attachment: fixed;
+}
+html, body{
+  margin: 0;
+  padding: 0;
+  font-family: 'rokkittregular', sans-serif;
+}
+body{
+  padding: 0;
+}
+a:link{
+  text-decoration: none;
+}
+a:visited{
+  text-decoration: none;
+}
+a:hover{
+  text-decoration: none;
+}
+a:active{
+  text-decoration: none;
+}
+#header{
+  padding-left: 1em;
+  height: 2em;
+  line-height: 2em;
+  background-color: #3B59A2;
+}
+#header > a{
+  color: #FFF;
+}
+#projectsbox{
+	width: 55em;
+	text-align: center;
+	margin: 3em auto;
+}
+.project{
+	display: inline-block;
+	margin: 1em;
+	width: 16em;
+	height: 9em;
+	border-radius: 4px;
+}
+.project:hover{
+	cursor: pointer;
+}
+.project > .title{
+	height: 1.5em;
+	color: #FFF;
+	line-height: 1.5em;
+	font-size: 1.1em;
+	text-transform: capitalize;
+	background-color: #3B59A2;
+	border-radius: 4px 4px 0 0;
+	opacity: 0.7;
+}
+.descbox{
+	float: left;
+	display: none;
+	padding: 1em;
+	height: 5.35em;
+	color: #FFF;
+	background-color: rgba(0,0,0,0.6);
+	border-radius: 0 0 4px 4px;
+}
+.descbox:first-letter, #maindesc:first-letter{
+	text-transform: uppercase;
+}
+.secondarypic{
+	display: none;
+}
+#cascadia{
+	background-image: url("../images/cascadia.png");
+	background-size: contain;
+}
+#madiaevil{
+	background-image: url("../images/madiaevil.png");
+	background-size: contain;
+}
+#projectixe{
+	background-image: url("../images/projectixe.png");
+	background-size: contain;
+}
+#filter{
+	display: none;
+	z-index: 777;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+}
+#popup{
+	display: none;
+	z-index: 9999;
+	position: fixed;
+	top: 12%;
+	left: 12%;
+	right: 12%;
+	bottom: 12%;
+	background-color: #3B59A2;
+	border-radius: 6px;
+}
+#pclose{
+	height: 3em;
+	line-height: 3em;
+	text-align: right;
+	color: #FFF;
+}
+#pcloseb{
+	border-radius: 4px;
+}
+#pcloseb:hover{
+	cursor: pointer;
+}
+#main{
+	height: calc(60% - 5em);
+	padding: 1em;
+}
+#main > #mainpic{
+	display: inline-block;
+	height: 100%;
+	background-image: url("../images/projectixe.png");
+	background-size: contain;
+}
+#maindesc{
+	display: inline-block;
+	float: right;
+	height: calc(100% - 3em);
+	padding: 1.5em;
+	background-color: #3B59A2;
+	color: #FFF;
+	font-size: 1.2em;
+	border-radius: 6px;
+    -moz-box-shadow:    inset 0 0 35px #001550;
+    -webkit-box-shadow: inset 0 0 35px #001550;
+    box-shadow:         inset 0 0 35px #001550;
+}

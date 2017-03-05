@@ -8,9 +8,8 @@
 	<meta name="viewport" content="width=device-width">
 	<title>Marius Chiriac</title>
 	<link href="assets/css/fontawesome/css/font-awesome.min.css" rel="stylesheet">
-	<link href="assets/css/custom.css" rel="stylesheet">
-	<script src="assets/js/lib/jquery-2.2.1.min.js"></script>
-	<script src='assets/js/custom.js'></script>
+	<link href="assets/css/index.css" rel="stylesheet">
+	<script src='assets/js/index.js'></script>
 </head>
 <body>
 	<div id="sidebar">
@@ -23,7 +22,7 @@
 		</div>
 		<div id="hireme">
 			<div class="square-box-s hirebutton">
-				<a href="assets/docs/cv.pdf" id="mycv" class="square" title="Watch my CV">
+				<a href="assets/docs/marius_chiriac_cv.pdf" id="mycv" class="square" title="Watch my CV">
 					<i class="fa fa-address-book fa-lg"></i>
 				</a>
 			</div>
@@ -54,7 +53,7 @@
 					<span> work experience</span>
 				</div>
 			</a>
-			<a href="/projects.html">
+			<a href="projects.html">
 				<div>
 					<i class="fa fa-gear"></i>
 					<span> projects</span>
@@ -62,7 +61,7 @@
 			</a>
 		</nav>
 		<div id="doc">
-			<span class="darkfont">about me</span>
+			<span class="npoint darkfont">about me</span>
 			<div id="aboutme">
 				<div class="darkfont divtitle">hello, I am MARIUS CHIRIAC</div>
 				<div class="divhr"></div>
@@ -70,33 +69,62 @@
 					Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 				</div>
 			</div>
-			<span class="darkfont">contacts</span>
+			<span class="npoint darkfont">contacts</span>
 			<div id="getintouch">
-				<div class="darkfont divtitle"></div>
-				<div class="divhr"></div>
-				<div class="lightfont divcontent"></div>
+				<div class="cbox">
+					<span class="npoint cboxlabel"><i class="fa fa-envelope"></i> e-mail</span>
+					<span class="cboxcontent">
+						<a href="mailto:marius_andrei@hotmail.it?Subject=Portfolio" class="darkfont">
+							marius_andrei@hotmail.it
+						</a>
+					</span>
+				</div>
+				<div class="cbox">
+					<span class="npoint cboxlabel"><i class="fa fa-phone"></i> phone</span>
+					<span class="darkfont cboxcontent">+39 333 333 3333</span>
+				</div>
+				<div class="cbox">
+					<span class="npoint cboxlabel"><i class="fa fa-linkedin-square"></i> linkedin</span>
+					<span class="cboxcontent">
+						<a href="https://www.linkedin.com/in/marius-chiriac-b71ab2121" class="darkfont">
+							linkedin.com/in/marius-chiriac-b71ab2121
+						</a>
+					</span>
+				</div>
 			</div>
-			<span class="darkfont">work</span>
-			<div id="workexp">
-				<div class="darkfont divtitle"></div>
+			<span class="npoint darkfont">work experience</span>
+			<div id="workexp" class="lightfont">
+				<div class="mywork">
+					<div class="darkfont wwhat">stura cessi</div>
+					<div class="wwhen"><i class="fa fa-calendar"></i> 2010-2011</div>
+					<div class="divcontent">
+						Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+					</div>
+				</div>
 				<div class="divhr"></div>
-				<div class="lightfont divcontent"></div>
+				<div class="mywork">
+					<div class="darkfont wwhat">stura cessi</div>
+					<div class="wwhen"><i class="fa fa-calendar"></i> 2011-2012</div>
+					<div class="divcontent">
+						Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+					</div>
+				</div>
+				<div class="divhr"></div>
+				<div class="mywork">
+					<div class="darkfont wwhat">stura cessi</div>
+					<div class="wwhen"><i class="fa fa-calendar"></i> 2011-2012</div>
+					<div class="divcontent">
+						Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+					</div>
+				</div>
 			</div>
+			<a href="projects.html">
+				<div id="projl">projects <i class="fa fa-chevron-circle-right"></i></div>
+			</a>
 		</div>
-		<div id="footer"></div>
-			<script>
-				function initMap() {
-					var myposition = {lat: 45.4538236, lng: 8.5807615};
-					var map = new google.maps.Map(document.getElementById('footer'), {
-						zoom: 4,
-						center: myposition
-					});
-					var marker = new google.maps.Marker({
-						position: myposition,
-						map: map
-					});
-				}
-			</script>
+		<div id="footer">
+			<div id="footerdiv">connection with google maps failed</div>
+		</div>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCCjcHNBhufnjfhbrLaYg3VNzAjKSw6cCA&callback=initMap">
     </script>
 	</div>

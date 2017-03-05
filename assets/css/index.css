@@ -18,6 +18,18 @@ html, body{
 body{
   padding: 0;
 }
+a:link{
+  text-decoration: none;
+}
+a:visited{
+  text-decoration: none;
+}
+a:hover{
+  text-decoration: none;
+}
+a:active{
+  text-decoration: none;
+}
 #sidebar{
   position: fixed;
   width: calc(18% - 3em);
@@ -137,25 +149,6 @@ body{
   -webkit-transition: all 0.4s ease-in-out 0s;
   transition: all 0.4s ease-in-out 0s;
 }
-#navbar > a:link{
-  text-decoration: none;
-}
-#navbar > a:visited{
-  text-decoration: none;
-}
-#navbar > a:hover{
-  text-decoration: none;
-}
-#navbar > a:active{
-  text-decoration: none;
-}
-.fa-phone{
-  -webkit-transition: all 0.4s ease-in-out 0s;
-  transition: all 0.4s ease-in-out 0s;
-}
-.fa-phone:hover{
-
-}
 #doc{
   margin-top: 3em;
   padding: 1.75em 6em 10em 2.75em;
@@ -169,6 +162,9 @@ body{
   text-transform: uppercase;
   font-size: 1.8em;
   font-weight: bold;
+}
+.npoint:hover{
+  cursor: default;
 }
 #doc > div{
   margin-bottom: 2em;
@@ -187,14 +183,88 @@ body{
   font-size: 1.8em;
 }
 .divhr{
-  width: 100px;
-  margin-bottom: 0.6em;
-  border-bottom: 1px solid #7A8F9D;
+  margin: 0.45em 0;
+  height: 1px;
+  background-color: #7B9F9E;
 }
 .divcontent{
+  text-indent: 0.4em;
   font-size: 1.2em;
   font-weight: lighter;
 }
+.cbox{
+  margin: 1em;
+  display: inline-block;
+}
+.cboxlabel{
+  float: left;
+  color: #FFF;
+  text-transform: capitalize;
+  background-color: #3B59A2;
+  border-radius: 4px 0 0 4px;
+}
+.cboxlabel, .cboxcontent{
+  margin: 0;
+  height: 1.5em;
+  padding: 0 0.4em;
+  line-height: 1.5em;
+  font-size: 1.2em;
+  border: 1px solid #3B59A2;
+}
+.cboxcontent{
+  float: right;
+  border-radius: 0 4px 4px 0;
+}
+.wwhat{
+  text-transform: capitalize;
+  font-size: 1.4em;
+  font-weight: bold;
+}
+.wwhen{
+  margin: 0.35em 0;
+  color: rgba(217,0,7,0.6);
+}
+#projl{
+  margin-top: 1em;
+  padding: 0.3em;
+  color: #FFF;
+  text-transform: capitalize;
+  font-size: 2em;
+  background-color: #3B59A2;
+  border: 3px dotted #0B2972;
+  border-radius: 6px;
+  -webkit-transition: all 1s ease-in-out 0s;
+  transition: all 1s ease-in-out 0s;
+}
+#projl:hover{
+  -webkit-transition: all 1s ease-in-out 0s;
+  transition: all 1s ease-in-out 0s;
+  word-spacing: 12em;
+}
+#projl > i{
+  -webkit-transition: all 0.4s ease-in-out 0s;
+  transition: all 0.4s ease-in-out 0s;
+}
 #footer{
-  height: 260px;
+  padding: 0.15em;
+  line-height: 260px;
+  text-align: center;
+  font-size: 3em;
+  background-color: #3B59A2;
+  color: #FFF;
+}
+#footerdiv{
+  height: 300px;
+  border-radius: 3px;
+}
+/*PROJECTS*/
+#header{
+  padding-left: 1em;
+  height: 2em;
+  line-height: 2em;
+  background-color: #3B59A2;
+  border-radius: 0 0 6px 6px;
+}
+#header > a{
+  color: #FFF;
 }
