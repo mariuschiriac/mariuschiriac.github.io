@@ -1,0 +1,37 @@
+# section information
+section:
+  name: "Su di me"
+  id: about
+  enable: true
+  weight: 1
+  showOnNavbar: true
+  template: sections/about.html
+
+# your designation
+designation: "Ingegnere del software"
+# your company information
+company:
+  name: Example Co.
+  url: "https://www.example.com"
+
+# your resume. this file path should be relative to you "static" directory
+resume: "files/resume_it.pdf"
+
+# a summary about you
+summary: "sono un ingegnere informatico appassionato di tecnologia con 8 anni di esperienza nello sviluppo"
+
+# your social links
+# give as many as you want. use font-awesome for the icons.
+socialLinks:
+- name: Email
+  icon: "fas fa-envelope"
+  url: "redarked@gmail.com"
+
+- name: Github
+  icon: "fab fa-github"
+  url: "https://github.com/mariuschiriac"
+
+- name: LinkedIn
+  icon: "fab fa-linkedin"
+  url: "https://it.linkedin.com/in/marius-chiriac-b71ab2121"
+

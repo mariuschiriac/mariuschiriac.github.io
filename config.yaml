@@ -1,7 +1,7 @@
 baseURL: https://mariuschiriac.github.io/
 
 languageCode: en-us
-title: 'TITOLO'
+title: 'Marius Chiriac'
 theme: 'toha'
 
 # Manage languages
@@ -28,9 +28,9 @@ markup:
     ordered: false
 
 # Enable Google Analytics
-googleAnalytics: UA-122321624-2
+googleAnalytics: G-GL0HTQZQGK
 
-# Enable Disqus forum
+#Roba per i commenti
 #disqusShortname: toha-example-site
 
 # Enable global emoji support

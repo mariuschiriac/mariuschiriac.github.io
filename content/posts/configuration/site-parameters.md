@@ -101,8 +101,8 @@ Now, provide your basic information. Create a `author.yaml` file in your `/data`
 
 ```yaml
 # some information about you
-name: "Jane Doe"
-nickname: "Jane"
+name: "Marius Chiriac"
+nickname: "Marius"
 image: "images/avatar.png"
 
 # greeting message before your name. it will default to "Hi! I am" if not provided
@@ -110,13 +110,13 @@ greeting: "Hi, I am"
 
 # give your contact information. they will be used in the footer
 contactInfo:
-  email: "janedoe@example.com"
-  phone: "+0123456789"
+  email: "redarked@gmail.com"
+  phone: "+393880947809"
 
 # a summary of what you do
 summary:
 - I am a Developer
-- I work with Go
+- I work with any tecnology stack
 - I love to work with some fun projects
 ```
 
@@ -125,7 +125,7 @@ summary:
 Let's add a copyright notice for your site. This will be shown at the bottom of the footer. Create `site.yaml` file in your `/data` directory and add the following section there.
 
 ```yaml
-copyright: © 2020 Copyright.
+copyright: © 2020 Marius Chiriac.
 ```
 
 ### Site's Description
@@ -134,20 +134,8 @@ Now, add a description of your site that will help the search engines to find yo
 
 ```yaml
 # Meta description for your site.  This will help the search engines to find your site.
-description: Example site for hugo theme Toha.
+description: marius chiriac
 ```
-
-### Add Custom Menus
-
-If you want to add some custom menus in the navbar, you can easily add them by adding the following in the `site.yaml` file.
-
-```yaml
-customMenus:
-- name: Notes
-  url: https://hossainemruz.gitbook.io/notes/
-```
-
-This is particularly helpful when you want to add a link to another site in the navbar.
 
 ### Example `params` Section
 
@@ -163,9 +151,9 @@ params:
   # transparent navbar and the main logo will be used in the non-transparent navbar.
   # It will default to the theme logos if not provided.
   logo:
-    main: /assets/images/main-logo.png
-    inverted: /assets/images/inverted-logo.png
-    favicon: /assets/images/favicon.png
+    main: images/main-logo.png
+    inverted: images/inverted-logo.png
+    favicon: images/favicon.png
 
   # GitHub repo URL of your site
   gitRepo: https://github.com/hossainemruz/toha-example-site

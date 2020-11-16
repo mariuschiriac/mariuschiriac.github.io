@@ -1,0 +1,15 @@
+name: "Marius Chiriac"
+nickname: "Marius"
+image: "images/avatar.png"
+
+# greeting message before your name. it will default to "Hi! I am" if not provided
+greeting: "Salve, sono"
+
+# give your some contact information. they will be used in the footer
+contactInfo:
+  email: "redarked@gmail.com"
+  phone: "+393880947809"
+
+# some summary about what you do
+summary:
+  - Sono uno sviluppatore
