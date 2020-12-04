@@ -4,5 +4,5 @@ menu:
   sidebar:
     name: Unity
     identifier: unity
-    weight: 2
+    weight: 100
 ---
