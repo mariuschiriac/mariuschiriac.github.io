@@ -1,0 +1,175 @@
+<!doctype html><html><head><title>Chain of Responsibility Pattern</title><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta http-equiv=x-ua-compatible content="ie=edge"><link rel=stylesheet href=/assets/css/bootstrap.min.css><link rel=stylesheet href=/assets/css/layouts/main.css><link rel=stylesheet href=/assets/css/style.css><link rel=stylesheet href=/assets/css/navigators/navbar.css><link href="https://fonts.googleapis.com/css2?family=Muli:wght@300;400;500;600" rel=stylesheet><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css><link rel=icon type=image/png href=/images/favicon.png><link rel=stylesheet href=/assets/css/style.css><meta name=description content="Chain of Responsibility Pattern"><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/atom-one-dark.min.css><link rel=stylesheet href=/assets/css/layouts/single.css><link rel=stylesheet href=/assets/css/navigators/sidebar.css><script type=application/javascript>var doNotTrack=false;if(!doNotTrack){window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;ga('create','G-GL0HTQZQGK','auto');ga('send','pageview');}</script><script async src=https://www.google-analytics.com/analytics.js></script></head><body data-spy=scroll data-target=#TableOfContents data-offset=80><div class="container-fluid bg-dimmed wrapper"><nav class="navbar navbar-expand-xl top-navbar final-navbar shadow"><div class=container><button class="navbar-toggler navbar-light" id=sidebar-toggler type=button onclick=toggleSidebar()>
+<span class=navbar-toggler-icon></span></button>
+<a class=navbar-brand href=/><img src=/images/main-logo.png>Marius Chiriac</a>
+<button class="navbar-toggler navbar-light" id=toc-toggler type=button onclick=toggleTOC()>
+<span class=navbar-toggler-icon></span></button><div class="collapse navbar-collapse lang-selector" id=top-nav-items><ul class="navbar-nav ml-auto"></ul></div></div><img src=/images/main-logo.png class=d-none id=main-logo>
+<img src=/images/inverted-logo.png class=d-none id=inverted-logo></nav><section class=sidebar-section id=sidebar-section><div class=sidebar-holder><div class=sidebar id=sidebar><input type=text placeholder=Search data-search id=search-box><div class=sidebar-tree><ul class=tree id=tree><li id=list-heading><a href=/posts data-filter=all>Posts</a></li><div class=subtree><li><i class="fas fa-plus-circle"></i><a href=/posts/client-server/>Client Server</a><ul><li><a href=/posts/client-server/cookies/>Cookies in development</a></li></ul></li><li><i class="fas fa-plus-circle"></i><a href=/posts/getting-started/>Getting Started</a><ul><li><a href=/posts/getting-started/prepare-site/>Prepare Site</a></li><li><a href=/posts/getting-started/github-pages/>Deploy in Github Pages</a></li><li><a href=/posts/getting-started/netlify/>Deploy in Netlify</a></li><li><a href=/posts/getting-started/theme-update/>Automate Theme Update</a></li></ul></li><li><i class="fas fa-minus-circle"></i><a class=active href=/posts/unity/>Unity</a><ul class=active><li><i class="fas fa-minus-circle"></i><a class=active href=/posts/unity/design-patterns/>Design Patterns</a><ul class=active><li><a class=active href=/posts/unity/design-patterns/chain_of_responsibility/>Chain of Responsibility</a></li><li><a href=/posts/unity/design-patterns/command/>Command</a></li></ul></li><li><a href=/posts/unity/webgl_integration/>javascript in WEBGL build</a></li></ul></li><li><i class="fas fa-plus-circle"></i><a href=/posts/writing-posts/>Writing Posts</a><ul><li><i class="fas fa-plus-circle"></i><a href=/posts/writing-posts/category/>Category</a><ul><li><a href=/posts/writing-posts/category/creating-category/>Creating Category</a></li><li><i class="fas fa-plus-circle"></i><a href=/posts/writing-posts/category/sub-category/>Sub-Category</a><ul><li><a href=/posts/writing-posts/category/sub-category/creating-sub-category/>Creating Sub-Category</a></li></ul></li></ul></li><li><a href=/posts/writing-posts/markdown-syntax-guide/>Markdown Guide</a></li><li><a href=/posts/writing-posts/using-emoji/>Using Emoji</a></li></ul></li><li><a href=/posts/analytics-and-comments/>Analytics & Comments</a></li></div></ul></div></div></div></section><section class=content-section id=content-section><div class=content><div class="container p-0 read-area"><div class="hero-area col-sm-12" id=hero-area style=background-image:url(https://mariuschiriac.github.io/assets/images/default-hero.jpg)></div><div class=page-content><div class="author-profile ml-auto align-self-lg-center"><img class=rounded-circle src=/images/avatar.png><h5 class=author-name>Marius Chiriac</h5><p>December 6, 2020</p></div><div class=title><h1>Chain of Responsibility Pattern</h1></div><div class=post-content id=post-content><p>Behavioural Design Pattern applied on unity</p><hr><h2 id=pattern-explenation>Pattern explenation</h2><h3 id=intent>Intent</h3><p>Avoid coupling between the sender of a request and the recipient, allowing more than a single object to hear the request. Concatenate the recipient objects and pass the request of object in object until one of these fails to fulfill it.</p><h3 id=applications>Applications</h3><ul><li>more than one object can handle a request and the receiver who will handle it is not known a priori. The recipient should be chosen automatically;</li><li>you want to pass a request to one of many objects, without explicitly specifying the recipient;</li><li>the set of objects that will handle a request must be dynamically defined.</li></ul><h3 id=actors>Actors</h3><ul><li><strong>Handler</strong><ul><li>Defines a common interface for handling requests.</li><li>(Optional) implement the link to follow in the chain.</li></ul></li><li><strong>ConcreteHandler</strong><ul><li>Handles the requests for which it is responsible</li><li>can access his successor</li><li>if the <em>ConcreteHandler</em> knows how to handle a request, it does; otherwise, he passes the request to his successor</li></ul></li><li><strong>Client</strong><ul><li>Invoke the request on a <em>ConcreteHandler</em> in the chain.</li></ul></li></ul><h3 id=schema>Schema</h3><img src=/images/design-patterns/chain_of_responsibility.gif class=center><h3 id=execution>Execution</h3><p>The first object in the chain receives the request and handles it directly, or passes it on to the immediately following object, which in turn behaves in the same way. The object that initiated the request does not explicitly know who will fulfill it.</p><img src=/images/design-patterns/chain_of_responsibility2.jpg class=center><h2 id=unity-example>Unity example</h2><pre><code>using UnityEngine;
+using System.Collections;
+
+public class ChainOfResponsibilityExample : MonoBehaviour
+{
+
+  //the client
+	void Start ( )
+	{
+		// create calculation objects that get chained to each other in a sec
+		Chain calc1 = new AddNumbers();
+		Chain calc2 = new SubstractNumbers();
+		Chain calc3 = new DivideNumbers();
+		Chain calc4 = new MultiplyNumbers();
+
+		// now chain them to each other
+		calc1.SetNextChain(calc2);
+		calc2.SetNextChain(calc3);
+		calc3.SetNextChain(calc4);
+
+		// this is the request that will be passed to a chain object to let them figure out which calculation objects it the right for the request
+		// the request is here the CalculationType enum we add. so we want this pair of numbers to be added
+		Numbers myNumbers = new Numbers(3, 5, CalculationType.Add);
+		calc1.Calculate(myNumbers);
+
+		// another example:
+		Numbers myOtherNumbers = new Numbers(6, 2, CalculationType.Multiply);
+		calc1.Calculate(myOtherNumbers);
+
+		// or pass it to some chain object inbetween which will not work in this case:
+		Numbers myLastNumbers = new Numbers(12, 3, CalculationType.Substract);
+		calc3.Calculate(myLastNumbers);
+	}
+
+
+	// just defining some types of calculation we want to implement
+	// it is better than passing string values as requests because you don't risk any typos that way :)
+	public enum CalculationType
+	{
+		Add,
+		Substract,
+		Divide,
+		Multiply
+	};
+
+
+
+
+	// We use this object as an example object to be passed to the calculation chain ;-)
+	// to figure out what we want to do with it (which is stored in CalculationType/calculationWanted)
+	public class Numbers
+	{
+		// some numbers:
+		public int number1 { get; protected set; }
+		public int number2 { get; protected set; }
+
+		// here we store in this object what we want to do with it to let the chain figure out who is responsible for it ;-)
+		public CalculationType calculationWanted { get; protected set; }
+
+		// constructor:
+		public Numbers(int num1, int num2, CalculationType calcWanted)
+		{
+			this.number1 = num1;
+			this.number2 = num2;
+			this.calculationWanted = calcWanted;
+		}
+	}
+
+
+	// the Handler
+	public interface Chain
+	{
+		void SetNextChain(Chain nextChain); // to be called when calulcation fails
+		void Calculate(Numbers numbers); // try to calculate
+	}
+
+	// the ConcreteHandler
+	public class AddNumbers : Chain
+	{
+		// each chain object stored a private nextInChain object, that gets called when the method calculate fails
+		protected Chain nextInChain;
+
+		public void SetNextChain(Chain nextChain)
+		{
+			this.nextInChain = nextChain;
+		}
+
+		public void Calculate(Numbers request)
+		{
+			if(request.calculationWanted == CalculationType.Add)
+			{
+				Debug.Log(&quot;Adding: &quot; + request.number1 + &quot; + &quot; + request.number2 + &quot; = &quot; + (request.number1 + request.number2).ToString());
+			}
+			else if(nextInChain != null)
+				nextInChain.Calculate(request);
+			else
+				Debug.Log (&quot;Handling of request failed: &quot; + request.calculationWanted);
+		}
+	}
+
+	public class SubstractNumbers : Chain
+	{
+		protected Chain nextInChain;
+
+		public void SetNextChain(Chain nextChain)
+		{
+			this.nextInChain = nextChain;
+		}
+
+		public void Calculate(Numbers request)
+		{
+			if(request.calculationWanted == CalculationType.Substract)
+			{
+				Debug.Log(&quot;Substracting: &quot; + request.number1 + &quot; - &quot; + request.number2 + &quot; = &quot; + (request.number1 - request.number2).ToString());
+			}
+			else if(nextInChain != null)
+				nextInChain.Calculate(request);
+			else
+				Debug.Log (&quot;Handling of request failed: &quot; + request.calculationWanted);
+		}
+	}
+
+	public class DivideNumbers : Chain
+	{
+		protected Chain nextInChain;
+
+		public void SetNextChain(Chain nextChain)
+		{
+			this.nextInChain = nextChain;
+		}
+
+		public void Calculate(Numbers request)
+		{
+			if(request.calculationWanted == CalculationType.Divide)
+			{
+				Debug.Log(&quot;Dividing: &quot; + request.number1 + &quot; / &quot; + request.number2 + &quot; = &quot; + (request.number1 / request.number2).ToString());
+			}
+			else if(nextInChain != null)
+				nextInChain.Calculate(request);
+			else
+				Debug.Log (&quot;Handling of request failed: &quot; + request.calculationWanted);
+		}
+	}
+
+	public class MultiplyNumbers : Chain
+	{
+		protected Chain nextInChain;
+
+		public void SetNextChain(Chain nextChain)
+		{
+			this.nextInChain = nextChain;
+		}
+
+		public void Calculate(Numbers request)
+		{
+			if(request.calculationWanted == CalculationType.Multiply)
+			{
+				Debug.Log(&quot;Multiplying: &quot; + request.number1 + &quot; * &quot; + request.number2 + &quot; = &quot; + (request.number1 * request.number2).ToString());
+			}
+			else if(nextInChain != null)
+				nextInChain.Calculate(request);
+			else
+				Debug.Log (&quot;Handling of request failed: &quot; + request.calculationWanted);
+		}
+	}
+
+}
+</code></pre><h2 id=conclusion>Conclusion</h2><p>Using this pattern has the following advantages and disadvantages:</p><ul><li><strong>Reduced coupling</strong>. Using this pattern means that an object doesn&rsquo;t have to know which other objects will handle a request. Therefore the interconnections between objects are reduced: instead of all possible recipients of the request, only one successor is known</li><li><strong>Greater flexibility in assigning responsibilities to objects</strong>. You can add or change the responsibilities for handling a request by adding or changing the order of items</li><li><strong>The recipient is not guaranteed</strong>. The request can go to the end of the chain without ever being handled.</li></ul></div><div class=btn-improve-page><a href=https://github.com/mariuschiriac/mariuschiriac.github.io/edit/master/content/posts/unity/design-patterns/chain_of_responsibility.md><i class="fas fa-code-branch"></i>Improve this page</a></div><hr><div class="row next-prev-navigator"><div class="col-md-12 next-article"><a href=/posts/unity/design-patterns/command/ class="btn btn-outline-info"><span>Next <i class="fas fa-chevron-circle-right"></i></span><br><span>Commmand Pattern</span></a></div></div><hr></div></div></div></section><section class=toc-section id=toc-section><div class=toc-holder><h5 class="text-center pl-3">Table of Contents</h5><hr><div class=toc><nav id=TableOfContents><ul><li><a href=#pattern-explenation>Pattern explenation</a><ul><li><a href=#intent>Intent</a></li><li><a href=#applications>Applications</a></li><li><a href=#actors>Actors</a></li><li><a href=#schema>Schema</a></li><li><a href=#execution>Execution</a></li></ul></li><li><a href=#unity-example>Unity example</a></li><li><a href=#conclusion>Conclusion</a></li></ul></nav></div></div></section></div><footer class="container-fluid text-center align-content-center footer pb-2"><div class="container pt-5"><div class="row text-left"><div class="col-md-4 col-sm-12"><h5>Navigation</h5><ul><li class=nav-item><a class=smooth-scroll href=#about>About</a></li><li class=nav-item><a class=smooth-scroll href=#skills>Skills</a></li><li class=nav-item><a class=smooth-scroll href=#experiences>Experiences</a></li><li class=nav-item><a class=smooth-scroll href=#projects>Projects</a></li><li class=nav-item><a class=smooth-scroll href=#recent-posts>Recent Posts</a></li></ul></div><div class="col-md-4 col-sm-12"><h5>Contact me:</h5><ul><li><span>Email:</span> <span>redarked@gmail.com.com</span></li><li><span>Phone:</span> <span>+393880947809</span></li></ul></div></div></div><hr><div class=container><div class="row text-left"><div class=col-md-4><a id=theme href=https://github.com/hossainemruz/toha target=#><img src=/assets/images/inverted-logo.png>
+Toha</a></div><div class="col-md-4 text-center">© 2020 Marius Chiriac.</div><div class="col-md-4 text-right"><a id=hugo href=https://gohugo.io/>Powered by
+<img src=/assets/images/hugo-logo-wide.svg alt="Hugo Logo" height=18></a></div></div></div></footer><script src=/assets/js/jquery-3.4.1.min.js></script><script src=/assets/js/popper.min.js></script><script src=/assets/js/bootstrap.min.js></script><script src=/assets/js/navbar.js></script><script src=/assets/js/main.js></script><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js></script><script src=/assets/js/single.js></script><script>hljs.initHighlightingOnLoad();</script></body></html>
