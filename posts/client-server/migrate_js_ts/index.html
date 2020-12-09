@@ -1,0 +1,67 @@
+<!doctype html><html><head><title>Migrate Javascript to Typescript</title><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta http-equiv=x-ua-compatible content="ie=edge"><link rel=stylesheet href=/assets/css/bootstrap.min.css><link rel=stylesheet href=/assets/css/layouts/main.css><link rel=stylesheet href=/assets/css/style.css><link rel=stylesheet href=/assets/css/navigators/navbar.css><link href="https://fonts.googleapis.com/css2?family=Muli:wght@300;400;500;600" rel=stylesheet><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css><link rel=icon type=image/png href=/images/favicon.png><link rel=stylesheet href=/assets/css/style.css><meta name=description content="Migrate Javascript to Typescript"><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/atom-one-dark.min.css><link rel=stylesheet href=/assets/css/layouts/single.css><link rel=stylesheet href=/assets/css/navigators/sidebar.css><script type=application/javascript>var doNotTrack=false;if(!doNotTrack){window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;ga('create','G-GL0HTQZQGK','auto');ga('send','pageview');}</script><script async src=https://www.google-analytics.com/analytics.js></script></head><body data-spy=scroll data-target=#TableOfContents data-offset=80><div class="container-fluid bg-dimmed wrapper"><nav class="navbar navbar-expand-xl top-navbar final-navbar shadow"><div class=container><button class="navbar-toggler navbar-light" id=sidebar-toggler type=button onclick=toggleSidebar()>
+<span class=navbar-toggler-icon></span></button>
+<a class=navbar-brand href=/><img src=/images/main-logo.png>Marius Chiriac</a>
+<button class="navbar-toggler navbar-light" id=toc-toggler type=button onclick=toggleTOC()>
+<span class=navbar-toggler-icon></span></button><div class="collapse navbar-collapse lang-selector" id=top-nav-items><ul class="navbar-nav ml-auto"></ul></div></div><img src=/images/main-logo.png class=d-none id=main-logo>
+<img src=/images/inverted-logo.png class=d-none id=inverted-logo></nav><section class=sidebar-section id=sidebar-section><div class=sidebar-holder><div class=sidebar id=sidebar><input type=text placeholder=Search data-search id=search-box><div class=sidebar-tree><ul class=tree id=tree><li id=list-heading><a href=/posts data-filter=all>Posts</a></li><div class=subtree><li><i class="fas fa-minus-circle"></i><a class=active href=/posts/client-server/>Client Server</a><ul class=active><li><a href=/posts/client-server/cookies/>Cookies in development</a></li><li><a class=active href=/posts/client-server/migrate_js_ts/>Migrate JS to TS</a></li></ul></li><li><i class="fas fa-plus-circle"></i><a href=/posts/unity/>Unity</a><ul><li><i class="fas fa-plus-circle"></i><a href=/posts/unity/design-patterns/>Design Patterns</a><ul><li><a href=/posts/unity/design-patterns/chain_of_responsibility/>Chain of Responsibility</a></li><li><a href=/posts/unity/design-patterns/command/>Command</a></li></ul></li><li><a href=/posts/unity/webgl_integration/>javascript in WEBGL build</a></li></ul></li><li><i class="fas fa-plus-circle"></i><a href=/posts/writing-posts/>Writing Posts</a><ul><li><i class="fas fa-plus-circle"></i><a href=/posts/writing-posts/category/>Category</a><ul><li><a href=/posts/writing-posts/category/creating-category/>Creating Category</a></li><li><i class="fas fa-plus-circle"></i><a href=/posts/writing-posts/category/sub-category/>Sub-Category</a><ul><li><a href=/posts/writing-posts/category/sub-category/creating-sub-category/>Creating Sub-Category</a></li></ul></li></ul></li><li><a href=/posts/writing-posts/markdown-syntax-guide/>Markdown Guide</a></li><li><a href=/posts/writing-posts/using-emoji/>Using Emoji</a></li></ul></li><li><a href=/posts/analytics-and-comments/>Analytics & Comments</a></li></div></ul></div></div></div></section><section class=content-section id=content-section><div class=content><div class="container p-0 read-area"><div class="hero-area col-sm-12" id=hero-area style=background-image:url(https://mariuschiriac.github.io/images/client-server/es5-es6-typescript-circle-diagram.png)></div><div class=page-content><div class="author-profile ml-auto align-self-lg-center"><img class=rounded-circle src=/images/avatar.png><h5 class=author-name>Marius Chiriac</h5><p>December 9, 2020</p></div><div class=title><h1>Migrate Javascript to Typescript</h1></div><div class=post-content id=post-content><p>In this guide we will see how to migrate a backend server with node.js 14 and express from javascript to typescript</p><hr><h2 id=why-typescript>Why Typescript</h2><ul><li>help developer to write consistent code</li><li>makes code easier to read and to mantain</li></ul><h2 id=converting-project>Converting project</h2><p>The first step is to add the TypeScript compiler. You can install the compiler as a developer dependency using the &ndash;save-dev flag.</p><pre><code>npm install --save-dev typescript
+</code></pre><p>Based on this tsconfig.json file, the TypeScript compiler will (attempt to) compile any files ending with .ts it finds in the src folder, and store the results in a folder named dist. Node.js uses the CommonJS module system, so the value for the module setting is commonjs. Also, the target version of JavaScript is ES6 (ES2015), which is compatible with modern versions of Node.js.</p><p>Add a file in root folder named <em>tsconfig.json</em></p><pre><code>{
+  &quot;extends&quot;: &quot;@tsconfig/node14/tsconfig.json&quot;,
+  &quot;compilerOptions&quot;: {
+    &quot;module&quot;: &quot;commonjs&quot;,
+    &quot;esModuleInterop&quot;: true,
+    &quot;target&quot;: &quot;es6&quot;,
+    &quot;noImplicitAny&quot;: true,
+    &quot;moduleResolution&quot;: &quot;node&quot;,
+    &quot;sourceMap&quot;: true,
+    &quot;outDir&quot;: &quot;dist&quot;,
+    &quot;paths&quot;: {
+      &quot;*&quot;: [&quot;node_modules/*&quot;]
+    },
+    &quot;resolveJsonModule&quot;: true
+  }
+}
+</code></pre><p>It’s also a great idea to add tslint and create a tslint.json file that instructs TypeScript how to lint your code. If you’re not familiar with linting, it is a code analysis tool to alert you to potential problems in your code beyond syntax issues.</p><p>Install tslint as a developer dependency.</p><pre><code>npm install --save-dev tslint
+</code></pre><p>Add a file in root folder named <em>tslint.json</em></p><pre><code>{
+  &quot;defaultSeverity&quot;: &quot;error&quot;,
+  &quot;extends&quot;: [
+    &quot;tslint:recommended&quot;
+  ],
+  &quot;jsRules&quot;: {},
+  &quot;rules&quot;: {
+    &quot;trailing-comma&quot;: [
+      false
+    ],
+    &quot;no-console&quot;: false
+  },
+  &quot;rulesDirectory&quot;: []
+}
+</code></pre><p>Add <em>dist</em> folder to gitignore</p><pre><code>node_modules
+[...]
+dist
+</code></pre><p>Next, update your package.json to change main to point to the new dist folder created by the TypeScript compiler. Also, add a couple of scripts to execute TSLint and the TypeScript compiler just before starting the Node.js server.</p><pre><code>  &quot;scripts&quot;: {
+    &quot;prebuild&quot;: &quot;tslint -c tslint.json -p tsconfig.json --fix&quot;,
+    &quot;build&quot;: &quot;tsc&quot;,
+    &quot;prestart&quot;: &quot;npm run build&quot;,
+    &quot;start&quot;: &quot;node dist/index.js&quot;
+  },
+</code></pre><p>To run the server we will not use <code>node index.js</code>, but <code>npm start</code></p><h2 id=fix-errors>Fix errors</h2><p>now it&rsquo;s time to change <em>index.js</em> to <em>index.ts</em></p><p>You will see tons of errors, but no problem</p><ol><li>Change require to import</li></ol><pre><code>const express = require('express'); //js
+import express from 'express';      //ts
+</code></pre><p>than install the types for the correspective package: <code>npm i --save-dev @types/express</code>.</p><p>vscode will help you in right importing with the quick fix shortcut</p><ol start=2><li>some packages hasn&rsquo;t the types module, in this case you can import with the require keyword, but it isn&rsquo;t recommended so try to use import first</li></ol><pre><code>require('dotenv').config({
+  path: './backend/environments/develop.env',
+});
+</code></pre><ol start=3><li>add the types to your code and the model classes</li></ol><pre><code>import { UserType } from './Enums';
+
+export default class TokenData {
+  constructor(
+    public userId: string,
+    public userType: UserType,
+    public bookingId?: string
+  ) {}
+}
+
+export function readToken(value: string): TokenData {
+  return jwt.verify(value, secretCode) as TokenData;
+}
+</code></pre><h2 id=conclusion>Conclusion</h2><p>When you fixed all compiler errors and run <code>npm start</code>. You will see that it creates the dist folder with the compiled javascript. The node environment will run the dist source code.</p></div><div class=btn-improve-page><a href=https://github.com/mariuschiriac/mariuschiriac.github.io/edit/master/content/posts/client-server/migrate_js_ts.md><i class="fas fa-code-branch"></i>Improve this page</a></div><hr><div class="row next-prev-navigator"><div class="col-md-12 next-article"><a href=/posts/unity/design-patterns/chain_of_responsibility/ class="btn btn-outline-info"><span>Next <i class="fas fa-chevron-circle-right"></i></span><br><span>Chain of Responsibility Pattern</span></a></div></div><hr></div></div></div></section><section class=toc-section id=toc-section><div class=toc-holder><h5 class="text-center pl-3">Table of Contents</h5><hr><div class=toc><nav id=TableOfContents><ul><li><a href=#why-typescript>Why Typescript</a></li><li><a href=#converting-project>Converting project</a></li><li><a href=#fix-errors>Fix errors</a></li><li><a href=#conclusion>Conclusion</a></li></ul></nav></div></div></section></div><footer class="container-fluid text-center align-content-center footer pb-2"><div class="container pt-5"><div class="row text-left"><div class="col-md-4 col-sm-12"><h5>Navigation</h5><ul><li class=nav-item><a class=smooth-scroll href=#about>About</a></li><li class=nav-item><a class=smooth-scroll href=#skills>Skills</a></li><li class=nav-item><a class=smooth-scroll href=#experiences>Experiences</a></li><li class=nav-item><a class=smooth-scroll href=#projects>Projects</a></li><li class=nav-item><a class=smooth-scroll href=#recent-posts>Recent Posts</a></li></ul></div><div class="col-md-4 col-sm-12"><h5>Contact me:</h5><ul><li><span>Email:</span> <span>redarked@gmail.com.com</span></li><li><span>Phone:</span> <span>+393880947809</span></li></ul></div></div></div><hr><div class=container><div class="row text-left"><div class=col-md-4><a id=theme href=https://github.com/hossainemruz/toha target=#><img src=/assets/images/inverted-logo.png>
+Toha</a></div><div class="col-md-4 text-center">© 2020 Marius Chiriac.</div><div class="col-md-4 text-right"><a id=hugo href=https://gohugo.io/>Powered by
+<img src=/assets/images/hugo-logo-wide.svg alt="Hugo Logo" height=18></a></div></div></div></footer><script src=/assets/js/jquery-3.4.1.min.js></script><script src=/assets/js/popper.min.js></script><script src=/assets/js/bootstrap.min.js></script><script src=/assets/js/navbar.js></script><script src=/assets/js/main.js></script><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js></script><script src=/assets/js/single.js></script><script>hljs.initHighlightingOnLoad();</script></body></html>
