@@ -9,7 +9,7 @@ menu:
     weight: 10
 ---
 
-In this guide we will see how to integrate javascript functions in unity game with WEBGL build
+Behavioural Pattern.
 
 ---
 
