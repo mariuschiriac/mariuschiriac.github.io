@@ -74,4 +74,4 @@ export type FixMeLater = any
 
 Now your project is typescript based, it's up to you choose how much strictfull it is.
 
-[This]("https://github.com/typescript-cheatsheets/react#reacttypescript-cheatsheets") is a good resource where to found usefull snippets of react example in typescript
+<a href="https://github.com/typescript-cheatsheets/react#reacttypescript-cheatsheets" target="_blank">This</a> is a good resource where to found usefull snippets of react example in typescript
