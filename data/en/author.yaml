@@ -8,11 +8,11 @@ greeting: "Hi, I am"
 
 # give your contact information. they will be used in the footer
 contactInfo:
-  email: "redarked@gmail.com.com"
-  phone: "+393880947809"
+  email: "redarked@gmail.com"
+  phone: "+39 3880947809"
 
 # a summary of what you do
 summary:
 - I am a Developer
 - I work with any tecnology stack
-- I love to work with some fun projects
+- I love to work with some challenging projects

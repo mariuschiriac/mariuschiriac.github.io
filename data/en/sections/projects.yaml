@@ -21,6 +21,14 @@ buttons:
 
 # your projects
 projects:
+- name: Echo Worlds
+  role: Team Lead
+  logo: images/projects/unity.png
+  timeline: "Jan 2021 - Present"
+  url: "https://www.example.com"
+  summary: 'game description soon'
+  tags: ["unity","professional","personal"]
+
 - name: Coin
   logo: images/projects/react.png
   role: Owner
@@ -38,14 +46,6 @@ projects:
   #url: ""
   summary: A funny game jam to test some unity new features.
   tags: ["hobby", "unity","game"]
-
-- name: Echo Worlds
-  role: Team Lead
-  logo: images/projects/unity.png
-  timeline: "Jan 2021 - Present"
-  url: "https://www.example.com"
-  summary: 'game description soon'
-  tags: ["unity","professional","personal"]
 
 - name: Unity Design Pattern
   logo: images/projects/unity.png
