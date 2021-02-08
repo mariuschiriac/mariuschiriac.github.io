@@ -3,7 +3,7 @@ section:
   name: Projects
   id: projects
   enable: true
-  weight: 4
+  weight: 5
   showOnNavbar: true
   # Can optionally hide the title in sections
   # hideTitle: true
@@ -18,6 +18,8 @@ buttons:
   filter: "web"
 - name: Native
   filter: "native"
+- name: Showcase
+  filter: "showcase"
 
 # your projects
 projects:
@@ -29,6 +31,74 @@ projects:
   summary: 'game description soon'
   tags: ["unity","professional","personal"]
 
+- name: Geko
+  logo: images/projects/angular.png
+  role: Owner
+  timeline: "2019"
+  summary: Geko [Documentation](https://geko-documentation.firebaseapp.com/index.html).
+  url: "https://geko-demo.web.app/home"
+  tags: ["web", "angular"]
+
+- name: The triple journey
+  logo: images/projects/unity.png
+  role: Owner
+  timeline: ""
+  summary: description.
+  url: https://www.movingok.it/the-triple-journey/
+  tags: ["web", "unity"]
+
+- name: Shoot 'n style
+  logo: images/projects/unity.png
+  role: Owner
+  timeline: ""
+  summary: link [link](https://ant.design/).
+  tags: ["vr", "unity"]
+
+- name: My family APP
+  logo: images/projects/flutter.svg
+  role: Owner
+  timeline: ""
+  url: https://play.google.com/store/apps/details?id=com.infiniteofficine.myfamilyapp
+  summary: Description []().
+  tags: ["native", "flutter"]
+
+- name: Smart concierge online
+  logo: images/projects/angular.png
+  role: Owner
+  timeline: ""
+  #url: 
+  summary: Description [website](link alle foto).
+  tags: ["web", "angular"]
+
+- name: 360 tour builder
+  logo: images/projects/react.png
+  role: Owner
+  timeline: ""
+  url: http://rever22411.altervista.org/web360tour/builder/
+  summary: Description [Sample](http://rever22411.altervista.org/web360tour/demo/).
+  tags: ["web", "angular"]
+
+- name: Platform Showcase
+  logo: images/projects/unity.png
+  role: Owner
+  timeline: ""
+  summary: link []().
+  tags: ["showcase", "unity"]
+
+- name: AR showcase
+  logo: images/projects/unity.png
+  role: Owner
+  timeline: ""
+  summary: link []().
+  tags: ["showcase", "unity"]
+
+- name: VR Showcase
+  logo: images/projects/unity.png
+  role: Owner
+  timeline: ""
+  summary: link []().
+  tags: ["showcase", "unity"]
+
 - name: Coin
   logo: images/projects/react.png
   role: Owner
@@ -38,14 +108,6 @@ projects:
   summary: Testing repo to try react's ui library [ANT](https://ant.design/).
   tags: ["web", "react", "antdesign"]
 
-- name: GameJam
-  logo: images/projects/unity.png
-  role: Developer
-  timeline: "2018"
-  repo: https://github.com/Sciuzza/GameJamDbga
-  #url: ""
-  summary: A funny game jam to test some unity new features.
-  tags: ["hobby", "unity","game"]
 
 - name: Unity Design Pattern
   logo: images/projects/unity.png
@@ -54,7 +116,7 @@ projects:
   repo: https://github.com/mariuschiriac/Unity-Design-Patterns
   #url: ""
   summary: A reliable reimplementation of any pattern ever adopted to be easily understood from beginners.
-  tags: ["hobby", "fun", "unity"]
+  tags: ["fun", "unity"]
 
 - name: The big one
   logo: images/projects/unity.png
@@ -63,3 +125,7 @@ projects:
   repo: https://github.com/andrewmrc/The_Big_One
   summary: A 3D Game based on renowned [life is strange](https://it.wikipedia.org/wiki/Life_Is_Strange).
   tags: ["academic","unity","games","professional"]
+
+- name: More details
+  url: /posts
+  tags: ["notag"]
