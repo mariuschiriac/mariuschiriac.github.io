@@ -7,17 +7,22 @@ section:
   showOnNavbar: true
 
 # your designation
-designation: Software Engineer
+designation: Software Engineer and Solutions Designer
 # your company information
-company:
-  name: Example Co.
-  url: 'https://www.example.com'
+#company:
+# name: Example Co.
+#  url: 'https://www.example.com'
 
 # your resume. this file path should be relative to you "static" directory
 resume: 'files/resume_en.pdf'
 
 # a summary about you
-summary: 'I am a passionate software engineer with 8 years of working experience.'
+summary: '
+My name is Marius Chiriac and I love everything programming-related! <br> I started as a web developer and later took game programming classes at the <a href="https://dbgameacademy.it/" target="_blank"> Digital Bros Game Academy</a>.
+I now spend most of my time perfecting my programming skills as well as pursuing art, modeling, and design. I am especially fond of the Role Playing Game (RPG) genre.
+I am a passionate software engineer with more than 5 years of working experience. '
+
+
 
 # your social links
 # give as many as you want. use font-awesome for the icons.

@@ -11,39 +11,47 @@ section:
 # Your Skills.
 # Give a summary of you each skill in the summary section.
 skills:
-- name: Kubernetes
-  icon: "images/skills/kubernetes.png"
-  summary: "Capable of deploying, managing application on Kubernetes. Experienced in writing Kubernetes controllers for CRDs."
-  url: https://kubernetes.io/
+- name: Unity
+  icon: "images/skills/unity.png"
+  summary: "Capable of designing, prototyping and develop application (VR - AR - Standalone native) based on unity game engine. Experienced in writing unity editor extensions for better development workflow."
+  url: https://unity.com/
 
-- name: Go Development
-  icon: "images/skills/go.png"
-  summary: "Using as the main language for professional development. Capable of writing scalable, testable, and maintainable program."
-  url: "https://golang.org/"
+- name: Flutter
+  icon: "images/skills/flutter.svg"
+  summary: "Write most of the mobile app as multiplatform development with flutter. Easiest way to mantain ad fast develop a mobile application with stunning visual effects."
+  url: "https://flutter.dev/"
+
+- name: Angular
+  icon: "images/skills/angular.png"
+  summary: "Capable of build applications with Angular and reuse code to build apps for any deployment target. For web, mobile web, native mobile and native desktop."
+  url: "https://angular.io/"
+
+- name: React
+  icon: "images/skills/react.png"
+  summary: "Build encapsulated components that manage their own state and design simple views for each state ."
+  url: "https://it.reactjs.org/"
+  
+
+- name: Tensorflow
+  icon: "images/skills/tensorflow.png"
+  summary: "Experienced with building neural networks for machine learning, and ML generics implementations"
+  url: "https://www.tensorflow.org/"
+
+- name: Python
+  icon: "images/skills/python.png"
+  summary: "Know basic Python programming. Used for contest programming and problem solving."
 
 - name: Cloud Computing
   icon: "images/skills/cloud.png"
   summary: "Worked with most of the major clouds such as GCP, AWS, Azure etc."
 
-- name: Docker
-  icon: "images/skills/docker.svg"
-  summary: "Write most of the programs as dockerized container. Experienced with multi-stage, multi-arch build process."
-  url: "https://www.docker.com/"
+- name: Mobile Native
+  summary: "Worked with android and ios sdk natively."
 
-- name: Prometheus
-  icon: "images/skills/prometheus.png"
-  summary: "Capable of setup, configure Prometheus metrics. Experienced with PromQL, AlertManager. Also, experienced with writing metric exporters."
-  url: "https://prometheus.io/"
+- name: 3D
+  icon: "images/skills/3ds.webp"
+  summary: "Worked with most of the major modelling tools such as 3D Studio Max, Cinema4D, Blender."
 
-- name: Linux
-  icon: "images/skills/linux.png"
-  summary: "Using as the main operating system. Capable of writing bash/shell scripts."
-
-- name: Git
-  icon: "images/skills/git.png"
-  summary: "Experienced with git-based development. Mostly, use Github. Also, have experience in working with GitLab."
-  url: "https://git-scm.com/"
-
-- name: C++
-  icon: "images/skills/c++.png"
-  summary: "Know basic C/C++ programming. Used for contest programming and problem solving."
+- name: Graphics
+  icon: "images/skills/adobe.jpg"
+  summary: "Worked with most of the major applications of adobe such as illustrator, photoshop and animate."
