@@ -11,54 +11,46 @@ section:
 # Your experiences
 experiences:
 - company:
-    name: Example Co.
-    url: "https://www.example.com"
-    location: Dhaka Branch
+    name: Freelancer.
     # company overview
-    overview: Example Co. is a widely recognized company for cloud-native development. It builds tools for Kubernetes.
+    overview: Development of various software solutions ranging from gaming, tools and cloud to continuos integration, agile management and improving enterprise managing.
   positions:
-  - designation: Senior Software Engineer
-    start: Nov 2019
+  - designation: Solution Designer
+    start: Feb 2020
     # don't provide end date if you are currently working there. It will be replaced by "Present"
     # end: Dec 2020
     # give some points about what was your responsibilities at the company.
     responsibilities:
-    - Design and develop XYZ tool for ABC task
-    - Design, develop and manage disaster recovery tool [Xtool](https://www.example.com) that backup Kubernetes volumes, databases, and cluster's resource definition.
-    - Lead backend team.
-
-  - designation: Junior Software Engineer
-    start: Nov 2017
-    end: Oct 2019
-    responsibilities:
-    - Implement and test xyz feature for abc tool.
-    - Support client for abc tool.
-    - Learn k,d,w technology for xyz.
+    - Managing multiple people teams workflow, decide the technologies to be adopted in any development and teaching team members the designated tecnology
+    - Design, develop and manage various developments across different tecnologies such as unity, flutter, angular, react, etc.
+    - Data design (DB) and software architecture.
+    - Security of payments methods and multiplayer games
 
 - company:
-    name: PreExample Co.
-    url: "https://www.preexample.com"
-    location: Nowhere
-    overview: PreExample Co. is a gateway company to enter into Example co. So, nothing special here.
+    name: Nova Web Agency.
+    url: "https://novaweb.it/"
+    location: Novara
+    overview: Nova Web Agency is a gateway company that creates automation tools for industries. <br>I was directly involved in communication with the client and managed the development of their ideas
   positions:
   - designation: Software Engineer
-    start: March 2016
-    end: May 2017
+    start: Sep 2018
+    end: Dec 2019
     responsibilities:
-    - Write lots of example codes.
-    - Read lots of examples.
-    - See lots of example videos.
+    - Architectured automation tools.
+    - Software Engineer and architect.
+    - Customer support and relationship.
+    - Transforming customer ideas into software.
 
 - company:
-    name: Intern Counting Company (ICC).
-    url: "https://www.intern.com"
-    location: Intern Land
-    overview: Intern counting Company (ICC) is responsible for counting worldwide intern Engineers.
+    name: Uqido.
+    url: "https://www.uqido.com/"
+    location: Padova
+    overview: A leadmark for the Italian technological progress
   positions:
-  - designation: Intern
-    start: Jun 2015
-    end: Jan 2016
+  - designation: VR Engineer, backend developer
+    start: Sep 2017
+    end: Dec 2018
     responsibilities:
-    - Count lost of interns.
-    - Count more interns.
-    - Count me as an intern.
+    - Designed and developed different tool to improve workflow across platform like unity, webgl, maya and server deploy.
+    - Tool for transforming 2d cad architectures into 3d places liveable into virtual reality.
+    - Backend developer of largest health italian software for hospitalization and emergencies
