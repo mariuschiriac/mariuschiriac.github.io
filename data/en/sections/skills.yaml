@@ -13,7 +13,7 @@ section:
 skills:
 - name: Unity
   icon: "images/skills/unity.png"
-  summary: "Capable of designing, prototyping and develop application (VR - AR - Standalone native) based on unity game engine. Experienced in writing unity editor extensions for better development workflow."
+  summary: "Capable of designing, prototyping and develop application (XR - Standalone native) based on unity game engine. Experienced in writing unity editor extensions for better development workflow."
   url: https://unity.com/
 
 - name: Flutter
@@ -31,15 +31,10 @@ skills:
   summary: "Build encapsulated components that manage their own state and design simple views for each state ."
   url: "https://it.reactjs.org/"
   
-
 - name: Tensorflow
   icon: "images/skills/tensorflow.png"
   summary: "Experienced with building neural networks for machine learning, and ML generics implementations"
   url: "https://www.tensorflow.org/"
-
-- name: Python
-  icon: "images/skills/python.png"
-  summary: "Know basic Python programming. Used for contest programming and problem solving."
 
 - name: Cloud Computing
   icon: "images/skills/cloud.png"
