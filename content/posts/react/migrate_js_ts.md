@@ -1,10 +1,10 @@
 ---
-title: 'Migrate Javascript to Typescript'
+title: 'React: Migrate Javascript to Typescript'
 date: 2020-12-16T00:00:00+00:00
 hero: /images/client-server/es5-es6-typescript-circle-diagram.png
 menu:
   sidebar:
-    name: Migrate JS to TS
+    name: 'React: Migrate JS to TS'
     identifier: react-migrate_js_ts
     parent: react
     weight: 10

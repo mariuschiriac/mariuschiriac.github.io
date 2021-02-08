@@ -1,10 +1,10 @@
 ---
-title: 'Migrate Javascript to Typescript'
+title: 'Node: Migrate Javascript to Typescript'
 date: 2020-12-09T00:00:00+00:00
 hero: /images/client-server/es5-es6-typescript-circle-diagram.png
 menu:
   sidebar:
-    name: Migrate JS to TS
+    name: 'Node: Migrate JS to TS'
     identifier: client-server-migrate_js_ts
     parent: client-server
     weight: 12
