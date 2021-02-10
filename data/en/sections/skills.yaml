@@ -41,7 +41,7 @@ skills:
   summary: "Worked with most of the major clouds such as GCP, AWS, Azure etc."
 
 - name: Mobile Native
-  summary: "Worked with android and ios sdk natively."
+  summary: "Worked with both android and ios sdk natively."
 
 - name: 3D
   icon: "images/skills/3ds.webp"

@@ -28,38 +28,42 @@ projects:
   logo: images/projects/unity.png
   timeline: "Jan 2021 - Present"
   url: "https://www.example.com"
-  summary: 'game description soon'
+  summary: 'Echo Worlds is a turn-based strategic role-playing game, 
+  bringing back nostalgic memories from good old story driven turn-based games
+  with engaging multiplayer boss fights and guild battles'
   tags: ["unity","professional","personal"]
 
 - name: Geko
   logo: images/projects/angular.png
   role: Owner
   timeline: "2019"
-  summary: Geko [Documentation](https://geko-documentation.firebaseapp.com/index.html).
+  summary: Geko is a PWA builded to help animal husbandries in generic management. it works perfectly across any platform. [Documentation](https://geko-documentation.firebaseapp.com/index.html).
   url: "https://geko-demo.web.app/home"
   tags: ["web", "angular"]
 
 - name: The triple journey
   logo: images/projects/unity.png
-  role: Owner
+  role: Programmer, 3d artist
   timeline: ""
-  summary: description.
+  summary: The Triple Journey is a game created for the launch of new pharmaceutical products.
   url: https://www.movingok.it/the-triple-journey/
   tags: ["web", "unity"]
 
 - name: Shoot 'n style
   logo: images/projects/unity.png
-  role: Owner
+  role: Team Lead, programmer
   timeline: ""
-  summary: link [link](https://ant.design/).
+  url: 
+  summary: is a game created for the launch of new hairstyle products for celeber [Parlux](https://www.parlux.it/it) brand.
   tags: ["vr", "unity"]
 
 - name: My family APP
   logo: images/projects/flutter.svg
-  role: Owner
+  role: Programmer
   timeline: ""
   url: https://play.google.com/store/apps/details?id=com.infiniteofficine.myfamilyapp
-  summary: Description []().
+  summary: 'Family M’App is an APP managed by parents for parents that informs, listens, values ​​and supports. 
+  It is a virtual space for collecting questions / needs, a place to offer skills and exchanges between families. [website](https://www.familymapp.it/).'
   tags: ["native", "flutter"]
 
 - name: Smart concierge online
@@ -67,7 +71,8 @@ projects:
   role: Owner
   timeline: ""
   #url: 
-  summary: Description [website](link alle foto).
+  summary: 'is a concierge service for hotel / hotel reception, etc .. 
+  created to support users in times of coronavirus [website](Still NDA). contact me for '
   tags: ["web", "angular"]
 
 - name: 360 tour builder
@@ -75,28 +80,29 @@ projects:
   role: Owner
   timeline: ""
   url: http://rever22411.altervista.org/web360tour/builder/
-  summary: Description [Sample](http://rever22411.altervista.org/web360tour/demo/).
+  summary: '360 tour builder is a complete tool for creating and editing virtual tours, 
+  which were created to MAKE VTOUR (MULTIRES) droplet or MAKE VTOUR (NORMAL) droplet [Sample](http://rever22411.altervista.org/web360tour/demo/).'
   tags: ["web", "angular"]
 
 - name: Platform Showcase
   logo: images/projects/unity.png
   role: Owner
   timeline: ""
-  summary: link []().
+  summary: a video showreel of some previously developed titles platform like []().
   tags: ["showcase", "unity"]
 
 - name: AR showcase
   logo: images/projects/unity.png
   role: Owner
   timeline: ""
-  summary: link []().
+  summary: a video showreel of some previously developed AR titles []().
   tags: ["showcase", "unity"]
 
 - name: VR Showcase
   logo: images/projects/unity.png
   role: Owner
   timeline: ""
-  summary: link []().
+  summary: a video showreel of some previously developed VR titles []().
   tags: ["showcase", "unity"]
 
 - name: Coin
@@ -125,7 +131,3 @@ projects:
   repo: https://github.com/andrewmrc/The_Big_One
   summary: A 3D Game based on renowned [life is strange](https://it.wikipedia.org/wiki/Life_Is_Strange).
   tags: ["academic","unity","games","professional"]
-
-- name: More details
-  url: /posts
-  tags: ["notag"]
