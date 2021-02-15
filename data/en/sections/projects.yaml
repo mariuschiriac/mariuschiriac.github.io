@@ -84,7 +84,7 @@ projects:
   timeline: ""
   url: http://rever22411.altervista.org/web360tour/builder/
   summary: '360 tour builder is a complete tool for creating and editing virtual tours, 
-  which were created to MAKE VTOUR (MULTIRES) droplet or MAKE VTOUR (NORMAL) droplet [Sample](http://rever22411.altervista.org/web360tour/demo/).'
+  which were created to make virtual tour [Sample](http://rever22411.altervista.org/web360tour/demo/).'
   tags: ["web", "angular"]
 
 - name: Coin
