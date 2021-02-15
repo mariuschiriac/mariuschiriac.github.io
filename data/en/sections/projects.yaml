@@ -112,3 +112,10 @@ projects:
   repo: https://github.com/andrewmrc/The_Big_One
   summary: A 3D Game based on renowned [life is strange](https://it.wikipedia.org/wiki/Life_Is_Strange).
   tags: ["academic","unity","games","professional"]
+
+- name: Virtual reality for architects
+  logo: images/projects/unity.png
+  role: Developer
+  summary: VR software that lend to architects and interior designers to design and create buildings and their interns...
+  url: "https://www.youtube.com/watch?v=NbG206mNEjo&ab_channel=LeonardDesignArchitects"
+  tags: ["VR", "unreal"]
