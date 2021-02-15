@@ -33,6 +33,13 @@ projects:
   with engaging multiplayer boss fights and guild battles'
   tags: ["unity","professional","personal"]
 
+- name: Generic Showcase
+  logo: images/projects/unity.png
+  role: Owner
+  summary: a video showreel of some previously developed titles in AR, VR, etc...
+  url: "https://www.youtube.com/watch?v=0Fva-cuNVeQ&list=PLG4ZNMrlDgZSt7DyLu2pyAz6Br83Bjl9m&ab_channel=MariusChiriac"
+  tags: ["showcase", "unity"]
+
 - name: Geko
   logo: images/projects/angular.png
   role: Owner
@@ -44,7 +51,6 @@ projects:
 - name: The triple journey
   logo: images/projects/unity.png
   role: Programmer, 3d artist
-  timeline: ""
   summary: The Triple Journey is a game created for the launch of new pharmaceutical products.
   url: https://www.movingok.it/the-triple-journey/
   tags: ["web", "unity"]
@@ -52,8 +58,7 @@ projects:
 - name: Shoot 'n style
   logo: images/projects/unity.png
   role: Team Lead, programmer
-  timeline: ""
-  url: 
+  url: "https://www.youtube.com/watch?v=yj9ALlDGtAo&list=PLG4ZNMrlDgZSt7DyLu2pyAz6Br83Bjl9m&index=3&ab_channel=MariusChiriac"
   summary: is a game created for the launch of new hairstyle products for celeber [Parlux](https://www.parlux.it/it) brand.
   tags: ["vr", "unity"]
 
@@ -69,8 +74,6 @@ projects:
 - name: Smart concierge online
   logo: images/projects/angular.png
   role: Owner
-  timeline: ""
-  #url: 
   summary: 'is a concierge service for hotel / hotel reception, etc .. 
   created to support users in times of coronavirus [website](Still NDA). contact me for '
   tags: ["web", "angular"]
@@ -84,27 +87,6 @@ projects:
   which were created to MAKE VTOUR (MULTIRES) droplet or MAKE VTOUR (NORMAL) droplet [Sample](http://rever22411.altervista.org/web360tour/demo/).'
   tags: ["web", "angular"]
 
-- name: Platform Showcase
-  logo: images/projects/unity.png
-  role: Owner
-  timeline: ""
-  summary: a video showreel of some previously developed titles platform like []().
-  tags: ["showcase", "unity"]
-
-- name: AR showcase
-  logo: images/projects/unity.png
-  role: Owner
-  timeline: ""
-  summary: a video showreel of some previously developed AR titles []().
-  tags: ["showcase", "unity"]
-
-- name: VR Showcase
-  logo: images/projects/unity.png
-  role: Owner
-  timeline: ""
-  summary: a video showreel of some previously developed VR titles []().
-  tags: ["showcase", "unity"]
-
 - name: Coin
   logo: images/projects/react.png
   role: Owner
@@ -113,7 +95,6 @@ projects:
   #url: ""  # If your project is not a public repo but it has a website or any external details url then provide it here. don't provide "repo" and "url" simultaneously.
   summary: Testing repo to try react's ui library [ANT](https://ant.design/).
   tags: ["web", "react", "antdesign"]
-
 
 - name: Unity Design Pattern
   logo: images/projects/unity.png
