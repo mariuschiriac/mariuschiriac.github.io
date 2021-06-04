@@ -37,3 +37,7 @@ socialLinks:
   - name: LinkedIn
     icon: 'fab fa-linkedin'
     url: 'https://it.linkedin.com/in/marius-chiriac-b71ab2121'
+
+  - name: ArtStation
+    icon: 'fab fa-artstation'
+    url: 'https://www.artstation.com/redarked'
