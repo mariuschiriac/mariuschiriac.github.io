@@ -4,8 +4,8 @@ date: 2020-12-03T06:15:55+00:00
 menu:
   sidebar:
     name: Change timeline dinamically
-    identifier: unity-dinamic-timeline
-    parent: unity
+    identifier: unity-timeline-dinamic-timeline
+    parent: unity-timeline
     weight: 12
 ---
 
