@@ -1,0 +1,357 @@
+<!doctype html><html><head><title>Change timeline dinamically</title><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta http-equiv=x-ua-compatible content="ie=edge"><link rel=stylesheet href=/assets/css/bootstrap.min.css><link rel=stylesheet href=/assets/css/layouts/main.css><link rel=stylesheet href=/assets/css/style.css><link rel=stylesheet href=/assets/css/navigators/navbar.css><link href="https://fonts.googleapis.com/css2?family=Muli:wght@300;400;500;600" rel=stylesheet><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css><link rel=icon type=image/png href=/images/favicon.png><link rel=stylesheet href=/assets/css/style.css><meta name=description content="Change timeline dinamically"><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/atom-one-dark.min.css><link rel=stylesheet href=/assets/css/layouts/single.css><link rel=stylesheet href=/assets/css/navigators/sidebar.css><script type=application/javascript>var doNotTrack=false;if(!doNotTrack){window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;ga('create','G-GL0HTQZQGK','auto');ga('send','pageview');}</script><script async src=https://www.google-analytics.com/analytics.js></script></head><body data-spy=scroll data-target=#TableOfContents data-offset=80><div class="container-fluid bg-dimmed wrapper"><nav class="navbar navbar-expand-xl top-navbar final-navbar shadow"><div class=container><button class="navbar-toggler navbar-light" id=sidebar-toggler type=button onclick=toggleSidebar()>
+<span class=navbar-toggler-icon></span></button>
+<a class=navbar-brand href=/><img src=/images/main-logo.png>Marius Chiriac</a>
+<button class="navbar-toggler navbar-light" id=toc-toggler type=button onclick=toggleTOC()>
+<span class=navbar-toggler-icon></span></button><div class="collapse navbar-collapse lang-selector" id=top-nav-items><ul class="navbar-nav ml-auto"></ul></div></div><img src=/images/main-logo.png class=d-none id=main-logo>
+<img src=/images/inverted-logo.png class=d-none id=inverted-logo></nav><section class=sidebar-section id=sidebar-section><div class=sidebar-holder><div class=sidebar id=sidebar><input type=text placeholder=Search data-search id=search-box><div class=sidebar-tree><ul class=tree id=tree><li id=list-heading><a href=/posts data-filter=all>Posts</a></li><div class=subtree><li><i class="fas fa-plus-circle"></i><a href=/posts/client-server/>Client Server</a><ul><li><a href=/posts/client-server/cookies/>Cookies in development</a></li><li><a href=/posts/client-server/migrate_js_ts/>Node: Migrate JS to TS</a></li></ul></li><li><i class="fas fa-plus-circle"></i><a href=/posts/react/>React</a><ul><li><a href=/posts/react/migrate_js_ts/>React: Migrate JS to TS</a></li></ul></li><li><i class="fas fa-minus-circle"></i><a class=active href=/posts/unity/>Unity</a><ul class=active><li><i class="fas fa-plus-circle"></i><a href=/posts/unity/design-patterns/>Design Patterns</a><ul><li><a href=/posts/unity/design-patterns/chain_of_responsibility/>Chain of Responsibility</a></li><li><a href=/posts/unity/design-patterns/command/>Command</a></li><li><a href=/posts/unity/design-patterns/object_pool/>Object Pool</a></li><li><a href=/posts/unity/design-patterns/component/>Component</a></li></ul></li><li><a href=/posts/unity/webgl_integration/>javascript in WEBGL build</a></li><li><i class="fas fa-minus-circle"></i><a class=active href=/posts/unity/timeline/>Timeline</a><ul class=active><li><a class=active href=/posts/unity/timeline/dinamic-timeline/>Change timeline dinamically</a></li><li><a href=/posts/unity/timeline/concatenate/>Concatenate Timeline</a></li><li><a href=/posts/unity/timeline/base/>Unity Timeline</a></li></ul></li></ul></li></div></ul></div></div></div></section><section class=content-section id=content-section><div class=content><div class="container p-0 read-area"><div class="hero-area col-sm-12" id=hero-area style=background-image:url(https://mariuschiriac.github.io/assets/images/default-hero.jpg)></div><div class=page-content><div class="author-profile ml-auto align-self-lg-center"><img class=rounded-circle src=/images/avatar.png><h5 class=author-name>Marius Chiriac</h5><p>December 3, 2020</p></div><div class=title><h1>Change timeline dinamically</h1></div><div class=post-content id=post-content><p>To achieve this result, we need a controller that hold the <strong>PlayableDirector</strong> and fill the current/correct value to the interested Timeline
+before to play it. We will use custom <strong>PlayableAsset</strong> and <strong>PlayableBehaviour</strong> to add new behaviour into the Timeline</p><hr><h2 id=create-custom-timeline-track>Create Custom Timeline Track</h2><img src=/images/unity2/timeline.png class=center><p>Create the <strong>TrackAsset</strong> to create your custom line track in the timeline, so you will be able to right-click the left side timeline&rsquo;s panel to see the action &ldquo;MovementTrack&rdquo; or what else you named your TrackAsset. You can edit how clips works in this class overriding <strong>CreateTrackMixer</strong> method, but we don&rsquo;t need to do it because we will just write simple logic in the Clip itself.</p><p><em>MovementTrack.cs</em></p><pre><code>using UnityEngine.Timeline;
+
+[TrackClipType(typeof(MoveClip))]
+[TrackClipType(typeof(LookAtClip))]
+public class MovementTrack : TrackAsset
+{
+
+}
+</code></pre><p>The TrackClipType specify which Clip will be held by the track</p><h3 id=create-custom-timeline-clip>Create Custom Timeline Clip</h3><img src=/images/unity2/move_clip.png class=center><p>In order to make a clip works we will use 2 classes: <em>MoveClip : PlayableAsset, ITimelineClipAsset</em> and <em>MovePlayableBehaviour : PlayableBehaviour</em>.
+The clip holds the data, while the playable behaviour will execute the logic.
+Our controller will fill this clip.</p><p><em>MoveClip.cs</em></p><pre><code>using Sirenix.OdinInspector;
+using System;
+using UnityEngine;
+using UnityEngine.Playables;
+using UnityEngine.Timeline;
+
+public class MoveClip : PlayableAsset, ITimelineClipAsset
+{
+  public MovePlayableBehaviour template = new MovePlayableBehaviour();
+
+  [ShowIf(&quot;@!this.moveToOriginalPosition&quot;)]
+  public bool moveToDestination;
+  [ShowIf(&quot;@!this.moveToDestination&quot;)]
+  public bool moveToOriginalPosition;
+  public SourceType selectToMove;
+  public AnimationCurve curve;
+  [ShowIf(&quot;@this.moveToDestination&quot;)]
+  public SourceType selectDestination;
+  [ShowIf(&quot;@this.moveToDestination&quot;)]
+  public bool copyDistance;
+  [ShowIf(&quot;@this.moveToDestination &amp;&amp; !this.copyDistance&quot;)]
+  public float distanceToDestination;
+  public Vector3 relativePosition;
+
+  public GameObject GoToMove { set { _goToMove = value; } }
+  public GameObject GoDestination { set { _goDestination = value; } }
+
+  private GameObject _goToMove;
+  private GameObject _goDestination;
+
+  public ClipCaps clipCaps
+  {
+    get { return ClipCaps.Blending; }
+  }
+  public override Playable CreatePlayable(PlayableGraph graph, GameObject owner)
+  {
+    var playable = ScriptPlayable&lt;MovePlayableBehaviour&gt;.Create(graph, template);
+    MovePlayableBehaviour clone = playable.GetBehaviour();
+    clone.goToMove = _goToMove;
+    clone.goDestination = _goDestination;
+    clone.curve = curve;
+    clone.relativePosition = relativePosition;
+    clone.moveToDestination = moveToDestination;
+    clone.distanceToDestination = distanceToDestination;
+    clone.moveToOriginalPosition = moveToOriginalPosition;
+    clone.copyDistance = copyDistance;
+    return playable;
+  }
+}
+
+</code></pre><p>The <strong>CreatePlayable</strong> method will pass the correct data to the behaviour at the start of the timeline.</p><p><em>MovePlayableBehaviour.cs</em></p><pre><code>using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Playables;
+
+public class MovePlayableBehaviour : PlayableBehaviour
+{
+  public bool moveToDestination;
+  public bool moveToOriginalPosition;
+  public GameObject goToMove;
+  public GameObject goDestination;
+  public bool copyDistance;
+  public float distanceToDestination;
+  public AnimationCurve curve;
+  public Vector3 relativePosition;
+
+
+  private Vector3 _startPos;
+  private Vector3 _endPos;
+
+  public override void OnGraphStart(Playable playable)
+  {
+  }
+
+  public override void OnGraphStop(Playable playable)
+  {
+  }
+
+  public override void OnBehaviourPlay(Playable playable, FrameData info)
+  {
+    if (goToMove == null) return;
+    _startPos = goToMove.transform.position;
+    _endPos = _startPos;
+    if (moveToDestination)
+    {
+      if (copyDistance)
+      {
+
+        float distance = Mathf.Abs(goDestination.transform.position.x - _startPos.x) +
+          Mathf.Abs(goDestination.transform.position.z - _startPos.z);
+        _endPos = goDestination.transform.position + Vector3.forward * distance;
+      }
+      else
+      {
+        _endPos = goDestination.transform.position -
+          (goDestination.transform.position - _startPos).normalized *
+          distanceToDestination;
+      }
+    }
+    if (moveToOriginalPosition)
+    {
+      Character character = goToMove.GetComponent&lt;Character&gt;();
+      _endPos = character.CurrentTile.transform.position;
+    }
+    _endPos += relativePosition;
+  }
+
+  public override void OnBehaviourPause(Playable playable, FrameData info)
+  {
+  }
+
+  public override void PrepareFrame(Playable playable, FrameData info)
+  {
+    if (goToMove == null) return;
+    var currentTime = (float)playable.GetTime() / (float)playable.GetDuration();
+    Vector3 currentPos = Vector3.Lerp(_startPos, _endPos, curve.Evaluate(currentTime));
+    goToMove.transform.position = currentPos;
+  }
+}
+</code></pre><h3 id=create-controller>Create Controller</h3><p>Controller&rsquo;s jobs:</p><ul><li>adjust timeline&rsquo;s clips values</li><li>play the timeline</li></ul><p>What the Controller needs to know:</p><ul><li>actors of the timeline (which gameobjects are involved in the timeline)</li><li>when to play the timeline</li><li>reference to <strong>PlayableDirector</strong></li></ul><pre><code>using UnityEngine;
+using UnityEngine.Playables;
+using System.Linq;
+using UnityEngine.Timeline;
+using System;
+using System.Collections.Generic;
+using UnityEngine.Animations;
+using UnityEngine.Audio;
+using Cinemachine;
+using System.Collections;
+
+[RequireComponent(typeof(PlayableDirector))]
+public class AbilityManagerDirector : MonoBehaviour
+{
+  public BattleUIController battleUIController;
+  public Board board;
+
+  public CinemachineVirtualCamera[] ultimateSkillCameras;
+  public CinemachineVirtualCamera[] skillCameras;
+
+  public PlayableAsset fadeIntoAnimationA;
+  public PlayableAsset fadeIntoAnimationE;
+
+  private PlayableDirector playableDirector;
+
+  private SkillEffectData info;
+  private float currentTimeScale;
+
+  private void Awake()
+  {
+    playableDirector = gameObject.GetComponent&lt;PlayableDirector&gt;();
+  }
+
+  private void OnEnable()
+  {
+    AnimationCharacter.CastAbilityAnimationEvent += OnCastAbilityAnimationEvent;
+  }
+
+  private void OnDisable()
+  {
+    AnimationCharacter.CastAbilityAnimationEvent -= OnCastAbilityAnimationEvent;
+  }
+
+  public void OnEndTimelineSignal()
+  {
+    StartCoroutine(_OnEndTimelineSignal());
+  }
+
+  private IEnumerator _OnEndTimelineSignal()
+  {
+    yield return new WaitForFixedUpdate();
+    Time.timeScale = currentTimeScale;
+  }
+
+  private void OnCastAbilityAnimationEvent(object sender, SkillEffectData e)
+  {
+    currentTimeScale = Time.timeScale;
+    Time.timeScale = 1f;
+    info = e;
+    StartCoroutine(InitAnimation());
+  }
+
+  private IEnumerator InitAnimation()
+  {
+    CCameraController.Instance.GetActiveVC().Follow = null;
+    // codice per usare la timeline di ingresso
+    if (info.castAbilityData.hasCinematicView &amp;&amp; !info.castAbilityData.isUlti)
+    {
+      playableDirector.playableAsset = info.attacker.GetComponent&lt;Character&gt;().partyIndex == 0 ? fadeIntoAnimationA : fadeIntoAnimationE;
+      PrepareTimeline();
+      playableDirector.Play();
+      yield return new WaitForSeconds((float)playableDirector.playableAsset.duration * Time.timeScale);
+    }
+    playableDirector.playableAsset = info.timeline[info.timelineIndex];
+    PrepareTimeline();
+    playableDirector.Play();
+    yield return new WaitForSeconds((float)playableDirector.playableAsset.duration * Time.timeScale);
+  }
+
+  private void PrepareTimeline()
+  {
+    //Animations
+    foreach (PlayableBinding playableBinding in playableDirector.playableAsset.outputs.Where((p) =&gt; p.streamName == &quot;Animation Track&quot;))
+    {
+      Animator charAnim = info.attacker.GetComponent&lt;Character&gt;().animationUnit.animator;
+      playableDirector.SetGenericBinding(playableBinding.sourceObject, charAnim);
+    }
+    
+    //Signals
+    foreach (PlayableBinding playableBinding in playableDirector.playableAsset.outputs.Where((p) =&gt; p.streamName == &quot;Signal Track&quot;))
+    {
+      playableDirector.SetGenericBinding(playableBinding.sourceObject, this);
+    }
+
+    //Cinemachine
+    foreach (PlayableBinding playableBinding in playableDirector.playableAsset.outputs.Where((p) =&gt; p.streamName == &quot;Cinemachine Track&quot;))
+    {
+      playableDirector.SetGenericBinding(playableBinding.sourceObject, Camera.main.GetComponent&lt;CinemachineBrain&gt;());
+      TimelineClip[] cinemachineClips = (playableBinding.sourceObject as CinemachineTrack).GetClips().OrderBy(c =&gt; c.start).ToArray();
+      for (int i = 0; i &lt; cinemachineClips.Length; i++)
+      {
+        CinemachineShot cinemachineShot = cinemachineClips[i].asset as CinemachineShot;
+        if (info.castAbilityData.isUlti)
+        {
+          ultimateSkillCameras[i % 2 == 0 ? 1 : 0].LookAt = null;
+          ultimateSkillCameras[i % 2 == 0 ? 1 : 0].Follow = null;
+          playableDirector.SetReferenceValue(cinemachineShot.VirtualCamera.exposedName, ultimateSkillCameras[i % 2 == 0 ? 1 : 0]);
+        }
+        else
+        {
+          playableDirector.SetReferenceValue(cinemachineShot.VirtualCamera.exposedName, skillCameras[i % 2 == 0 ? 1 : 0]);
+        }
+      }
+    }
+    //Movement
+    foreach (PlayableBinding playableBinding in playableDirector.playableAsset.outputs.Where(
+      (p) =&gt; p.streamName == &quot;Movement&quot; || p.streamName == &quot;Movement Track&quot;))
+    {
+      TimelineClip[] movementClips = (playableBinding.sourceObject as TrackAsset).GetClips().ToArray();
+      foreach (TimelineClip movementClip in movementClips)
+      {
+        switch (movementClip.displayName)
+        {
+          case &quot;LookAtClip&quot;:
+            LookAtClip lookAtClip = movementClip.asset as LookAtClip;
+            lookAtClip.GoToRotate = null;
+            lookAtClip.GoDestination = null;
+            switch (lookAtClip.selectToRotate)
+            {
+              case SourceType.Attacker:
+                lookAtClip.GoToRotate = info.attacker;
+                break;
+              case SourceType.TileTarget:
+                Debug.LogError(&quot;Missing Code&quot;);
+                break;
+              case SourceType.FirstDefender:
+                if (info.defenders != null &amp;&amp; info.defenders.Length &gt; 0)
+                {
+                  lookAtClip.GoToRotate = info.defenders[info.defenderIndex];
+                }
+                break;
+              case SourceType.AllDefenders:
+                Debug.LogError(&quot;Missing Code&quot;);
+                break;
+            }
+            if (!lookAtClip.lookAtCamera)
+            {
+              switch (lookAtClip.selectDestination)
+              {
+                case SourceType.Attacker:
+                  lookAtClip.GoDestination = info.attacker;
+                  break;
+                case SourceType.TileTarget:
+                  lookAtClip.GoDestination = info.tileTarget;
+                  break;
+                case SourceType.FirstDefender:
+                  if (info.defenders != null &amp;&amp; info.defenders.Length &gt; 0)
+                  {
+                    lookAtClip.GoDestination = info.defenders[info.defenderIndex];
+                  }
+                  break;
+                case SourceType.AllDefenders:
+                  Debug.LogError(&quot;Missing Code&quot;);
+                  break;
+              }
+            }
+            break;
+          case &quot;MoveClip&quot;:
+            MoveClip moveClip = movementClip.asset as MoveClip;
+            moveClip.GoToMove = null;
+            moveClip.GoDestination = null;
+            switch (moveClip.selectToMove)
+            {
+              case SourceType.Attacker:
+                moveClip.GoToMove = info.attacker;
+                break;
+              case SourceType.TileTarget:
+                Debug.LogError(&quot;Missing Code&quot;);
+                break;
+              case SourceType.FirstDefender:
+                if (info.defenders != null &amp;&amp; info.defenders.Length &gt; 0)
+                {
+                  moveClip.GoToMove = info.defenders[info.defenderIndex];
+                }
+                break;
+              case SourceType.AllDefenders:
+                Debug.LogError(&quot;Missing Code&quot;);
+                break;
+            }
+            if (moveClip.moveToDestination)
+            {
+              switch (moveClip.selectDestination)
+              {
+                case SourceType.Attacker:
+                  moveClip.GoDestination = info.attacker;
+                  break;
+                case SourceType.TileTarget:
+                  moveClip.GoDestination = info.tileTarget;
+                  break;
+                case SourceType.FirstDefender:
+                  if (info.defenders != null &amp;&amp; info.defenders.Length &gt; 0)
+                  {
+                    moveClip.GoDestination = info.defenders[info.defenderIndex];
+                  }
+                  break;
+                case SourceType.AllDefenders:
+                  Debug.LogError(&quot;Missing Code&quot;);
+                  break;
+              }
+            }
+            break;
+          default:
+            break;
+        }
+      }
+    }
+  }
+}
+
+</code></pre><h2 id=conclusion>Conclusion</h2></div><div class=btn-improve-page><a href=https://github.com/mariuschiriac/mariuschiriac.github.io/edit/master/content/posts/unity/timeline/dinamic-timeline.md><i class="fas fa-code-branch"></i>Improve this page</a></div><hr><div class="row next-prev-navigator"><div class="col-md-6 previous-article"><a href=/posts/unity/design-patterns/chain_of_responsibility/ class="btn btn-outline-info"><span><i class="fas fa-chevron-circle-left"></i>Prev</span><br><span>Chain of Responsibility Pattern</span></a></div><div class="col-md-6 next-article"><a href=/posts/unity/design-patterns/command/ class="btn btn-outline-info"><span>Next <i class="fas fa-chevron-circle-right"></i></span><br><span>Commmand Pattern</span></a></div></div><hr></div></div></div></section><section class=toc-section id=toc-section><div class=toc-holder><h5 class="text-center pl-3">Table of Contents</h5><hr><div class=toc><nav id=TableOfContents><ul><li><a href=#create-custom-timeline-track>Create Custom Timeline Track</a><ul><li><a href=#create-custom-timeline-clip>Create Custom Timeline Clip</a></li><li><a href=#create-controller>Create Controller</a></li></ul></li><li><a href=#conclusion>Conclusion</a></li></ul></nav></div></div></section></div><footer class="container-fluid text-center align-content-center footer pb-2"><div class="container pt-5"><div class="row text-left"><div class="col-md-4 col-sm-12"><h5>Navigation</h5><ul><li class=nav-item><a class=smooth-scroll href=#about>About</a></li><li class=nav-item><a class=smooth-scroll href=#skills>Skills</a></li><li class=nav-item><a class=smooth-scroll href=#experiences>Experiences</a></li><li class=nav-item><a class=smooth-scroll href=#recent-posts>Recent Posts</a></li><li class=nav-item><a class=smooth-scroll href=#projects>Projects</a></li></ul></div><div class="col-md-4 col-sm-12"><h5>Contact me:</h5><ul><li><span>Email:</span> <span>redarked@gmail.com</span></li><li><span>Phone:</span> <span>+39 3880947809</span></li></ul></div></div></div><hr><div class=container><div class="row text-left"><div class=col-md-4><a id=theme href=https://github.com/hossainemruz/toha target=#><img src=/assets/images/inverted-logo.png>
+Toha</a></div><div class="col-md-4 text-center">© 2021 Marius Chiriac.</div><div class="col-md-4 text-right"><a id=hugo href=https://gohugo.io/>Powered by
+<img src=/assets/images/hugo-logo-wide.svg alt="Hugo Logo" height=18></a></div></div></div></footer><script src=/assets/js/jquery-3.4.1.min.js></script><script src=/assets/js/popper.min.js></script><script src=/assets/js/bootstrap.min.js></script><script src=/assets/js/navbar.js></script><script src=/assets/js/main.js></script><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js></script><script src=/assets/js/single.js></script><script>hljs.initHighlightingOnLoad();</script></body></html>
