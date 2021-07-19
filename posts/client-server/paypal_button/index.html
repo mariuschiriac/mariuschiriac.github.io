@@ -1,0 +1,204 @@
+<!doctype html><html><head><title>Paypal payment React-Flask</title><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta http-equiv=x-ua-compatible content="ie=edge"><link rel=stylesheet href=/assets/css/bootstrap.min.css><link rel=stylesheet href=/assets/css/layouts/main.css><link rel=stylesheet href=/assets/css/style.css><link rel=stylesheet href=/assets/css/navigators/navbar.css><link href="https://fonts.googleapis.com/css2?family=Muli:wght@300;400;500;600" rel=stylesheet><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css><link rel=icon type=image/png href=/images/favicon.png><link rel=stylesheet href=/assets/css/style.css><meta name=description content="Paypal payment React-Flask"><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/atom-one-dark.min.css><link rel=stylesheet href=/assets/css/layouts/single.css><link rel=stylesheet href=/assets/css/navigators/sidebar.css><script type=application/javascript>var doNotTrack=false;if(!doNotTrack){window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;ga('create','G-GL0HTQZQGK','auto');ga('send','pageview');}</script><script async src=https://www.google-analytics.com/analytics.js></script></head><body data-spy=scroll data-target=#TableOfContents data-offset=80><div class="container-fluid bg-dimmed wrapper"><nav class="navbar navbar-expand-xl top-navbar final-navbar shadow"><div class=container><button class="navbar-toggler navbar-light" id=sidebar-toggler type=button onclick=toggleSidebar()>
+<span class=navbar-toggler-icon></span></button>
+<a class=navbar-brand href=/><img src=/images/main-logo.png>Marius Chiriac</a>
+<button class="navbar-toggler navbar-light" id=toc-toggler type=button onclick=toggleTOC()>
+<span class=navbar-toggler-icon></span></button><div class="collapse navbar-collapse lang-selector" id=top-nav-items><ul class="navbar-nav ml-auto"></ul></div></div><img src=/images/main-logo.png class=d-none id=main-logo>
+<img src=/images/inverted-logo.png class=d-none id=inverted-logo></nav><section class=sidebar-section id=sidebar-section><div class=sidebar-holder><div class=sidebar id=sidebar><input type=text placeholder=Search data-search id=search-box><div class=sidebar-tree><ul class=tree id=tree><li id=list-heading><a href=/posts data-filter=all>Posts</a></li><div class=subtree><li><i class="fas fa-minus-circle"></i><a class=active href=/posts/client-server/>Client Server</a><ul class=active><li><a href=/posts/client-server/cookies/>Cookies in development</a></li><li><a href=/posts/client-server/migrate_js_ts/>Node: Migrate JS to TS</a></li><li><a href=/posts/client-server/stripe_checkout/>Stripe payment React-Flask</a></li><li><a class=active href=/posts/client-server/paypal_button/>Paypal payment React-Flask</a></li></ul></li><li><i class="fas fa-plus-circle"></i><a href=/posts/react/>React</a><ul><li><a href=/posts/react/migrate_js_ts/>React: Migrate JS to TS</a></li></ul></li><li><i class="fas fa-plus-circle"></i><a href=/posts/unity/>Unity</a><ul><li><i class="fas fa-plus-circle"></i><a href=/posts/unity/design-patterns/>Design Patterns</a><ul><li><a href=/posts/unity/design-patterns/chain_of_responsibility/>Chain of Responsibility</a></li><li><a href=/posts/unity/design-patterns/command/>Command</a></li><li><a href=/posts/unity/design-patterns/object_pool/>Object Pool</a></li><li><a href=/posts/unity/design-patterns/component/>Component</a></li></ul></li><li><a href=/posts/unity/webgl_integration/>javascript in WEBGL build</a></li><li><i class="fas fa-plus-circle"></i><a href=/posts/unity/timeline/>Timeline</a><ul><li><a href=/posts/unity/timeline/dinamic-timeline/>Change timeline dinamically</a></li><li><a href=/posts/unity/timeline/concatenate/>Concatenate Timeline</a></li><li><a href=/posts/unity/timeline/base/>Unity Timeline</a></li></ul></li></ul></li></div></ul></div></div></div></section><section class=content-section id=content-section><div class=content><div class="container p-0 read-area"><div class="hero-area col-sm-12" id=hero-area style=background-image:url(https://mariuschiriac.github.io/assets/images/default-hero.jpg)></div><div class=page-content><div class="author-profile ml-auto align-self-lg-center"><img class=rounded-circle src=/images/avatar.png><h5 class=author-name>Marius Chiriac</h5><p>July 19, 2021</p></div><div class=title><h1>Paypal payment React-Flask</h1></div><div class=post-content id=post-content><h1 id=paypal-payment-react-flask>Paypal payment React-Flask</h1><p>I wrote this guide because there is no code example to implemnt a secure transaction with paypal buttons method with products on own database.</p><h2 id=versions>versions</h2><p>year: 2021</p><p>React:</p><ul><li>node: 14</li><li>&ldquo;react&rdquo;: &ldquo;^17.0.2&rdquo;</li><li>&ldquo;@paypal/react-paypal-js&rdquo;: &ldquo;^7.1.2&rdquo;</li><li>&ldquo;@reduxjs/toolkit&rdquo;: &ldquo;^1.6.0&rdquo;</li></ul><p>Flask:</p><ul><li>python 3.8.5</li><li>flask 2.0.1</li></ul><h2 id=payment-flow>Payment Flow</h2><ol><li>User in the React site add items to cart</li><li>User navigate to cart page</li><li>User click on &ldquo;Pay with card&rdquo;</li><li>On user input React call the back-end passing cart and user data</li><li>Flask validate cart items throught database (pricing and availability). then respond to React with the validated data</li><li>React ask Paypal to create the checkout session with validated data</li><li>Open Paypal payment page</li><li>User perform payment using Paypal account</li><li>Paypal send response to React</li><li>If payment success React empty cart and notify User</li><li>Paypal notify Flask throught IPN about payment completed with basical order info</li><li>Flask update database and React about buyed items</li></ol><img src=/images/client-server/paypal_flow.png class=center><h2 id=react-front-end>React (front-end)</h2><p>in the following example it&rsquo;s implemented the paypal button payment method using <code>react-paypal-js</code> package and <a href=https://redux-toolkit.js.org/rtk-query/overview>redux RTKQ</a></p><h3 id=indextsx>index.tsx</h3><p>At the root of project I added the Paypal payment button provider configured with the <code>client-id</code> of the app created on Paypal account</p><pre><code>&lt;PayPalScriptProvider
+options={{
+'client-id': 'my client id',
+currency:  'EUR',
+}}&gt;
+&lt;App  /&gt;
+&lt;/PayPalScriptProvider&gt;
+</code></pre><h3 id=modelspaymentts>models/Payment.ts</h3><pre><code>import { CartFootballer } from  './Footballer'; 
+export  interface  CheckoutResponse {
+checkout_url: string;
+}
+export  interface  CheckoutRequest {
+cartFootballers: CartFootballer[];
+email: string;
+}
+</code></pre><h3 id=apits>api.ts</h3><pre><code>import { createApi, fetchBaseQuery } from  '@reduxjs/toolkit/query/react';
+import  Cookies  from  'js-cookie';
+import { CheckoutRequest, CheckoutResponse } from  'models/Payment';
+export  const  api = createApi({
+baseQuery:  fetchBaseQuery({
+baseUrl:  process.env.REACT_APP_API_URL,
+credentials:  'include',
+prepareHeaders: (headers, { getState }) =&gt; {
+const  token = Cookies.get('csrf_access_token');
+// If we have a token set in state, let's assume that we should be passing it.
+if (token) headers.set('x-csrf-token', token);
+return  headers;
+},
+}),
+endpoints: (builder) =&gt; ({
+stripeCheckout:  builder.mutation&lt;CheckoutResponse, CheckoutRequest&gt;({
+query: (credentials) =&gt; ({
+url:  'payment/createCheckoutSession',
+method:  'POST',
+body:  credentials,
+}),
+}),
+paypalCheckout:  builder.mutation&lt;any, CheckoutRequest&gt;({
+query: (credentials) =&gt; ({
+url:  'payment/paypal/createCheckoutSession',
+method:  'POST',
+body:  credentials,
+}),
+}),
+}),
+});
+export  const { useStripeCheckoutMutation, usePaypalCheckoutMutation } = api;
+</code></pre><h3 id=carttsx>cart.tsx</h3><p>4.On user input React call the back-end passing cart and user data <code>await paypalCheckout(requestData).unwrap();</code></p><p>7.React open paypal payment window: <code>return actions.order.create(response);</code></p><p>10.handle empty cart onApprove callback of Paypal button: <code>onApprove={handlePaypalCheckoutComplete}</code></p><pre><code>import  React, { FC, useEffect } from  'react';
+import  Item  from  './Item';
+import { useCart } from  'services/cart';
+import {useStripeCheckoutMutation,usePaypalCheckoutMutation} from  'redux/api';
+import { CheckoutRequest } from  'models/Payment';
+import { FUNDING, PayPalButtons } from  '@paypal/react-paypal-js';
+const  App: FC = () =&gt; {
+const { cart } = useCart();
+const [stripeCheckout, { isLoading: stripeIsLoading }] =
+useStripeCheckoutMutation();
+const [paypalCheckout, { isLoading: paypalIsLoading }] =
+usePaypalCheckoutMutation();
+const  handleCheckout = async () =&gt; {
+const  data: CheckoutRequest = {
+cartFootballers:  cart,
+email:  user?.email || '',
+};
+try {
+const  response = await  stripeCheckout(data).unwrap();
+window.location.replace(response.checkout_url);
+} catch (error) {
+console.log(error.response);
+}
+};
+const  handlePaypalCheckoutComplete = async (data: any, actions: any) =&gt; {
+try {
+const  response = await  actions.order.capture();
+console.log(response);
+[...] // empty cart and notify success
+} catch (error) {
+console.log(error.response);
+}
+};
+const  handlePaypalCreateOrder = async (data: any, actions: any) =&gt; {
+const  requestData: CheckoutRequest = {
+cartFootballers:  cart,
+email:  user?.email || '',
+};
+try {
+const  response = await  paypalCheckout(requestData).unwrap();
+console.log(response);
+return  actions.order.create(response);
+} catch (error) {
+console.log(error.response);
+}
+return  '';
+};
+useEffect(() =&gt; {
+// Check to see if this is a redirect back from Checkout
+const  query = new  URLSearchParams(window.location.search);
+if (query.get('success')) {
+console.log('Order placed! You will receive an email confirmation.');
+// empty cart and redirect to /cart
+}
+if (query.get('canceled'))
+console.log('Order canceled -- continue to shop around');
+}, [cart]);
+return (
+&lt;&gt;
+{cart.length === 0 ? (
+&lt;p&gt;empty cart&lt;/p&gt;
+) : (
+&lt;&gt;
+&lt;div&gt;
+{cart.map((cartFootballer, key) =&gt; (
+&lt;Item
+cartFootballer={cartFootballer.footballer}
+quantity={cartFootballer.quantity}
+key={key}
+/&gt;
+))}
+&lt;/div&gt;
+&lt;div&gt;
+&lt;button  onClick={handleCheckout}&gt;Pay with card&lt;/button&gt;
+&lt;PayPalButtons
+createOrder={handlePaypalCreateOrder}
+onApprove={handlePaypalCheckoutComplete}
+fundingSource={FUNDING.PAYPAL}
+style={{ height:  50, shape:  'pill' }}
+&gt;&lt;/PayPalButtons&gt;
+&lt;/div&gt;
+&lt;/&gt;
+)}
+&lt;/&gt;
+);
+};
+export  default  App;
+</code></pre><h2 id=flask-back-end>Flask (back-end)</h2><p>the back-end needs 2 endpoint</p><p>no other configuration needed</p><h3 id=create_checkout_session>create_checkout_session</h3><p>Paypal has only 2 categories:</p><ul><li><strong>PHYSICAL_GOODS</strong> A tangible item that can be shipped with proof of delivery.</li><li><strong>DIGITAL_GOODS</strong> Goods that are stored, delivered, and used in their electronic format.</li></ul><p>this endpoist is POST and have to:</p><ul><li>validate user data using database</li><li>check for item availability</li><li>send to client the data for paypal button (create order function)</li></ul><p>create_checkout_session function:</p><pre><code>json_data = request.get_json(force=True)
+[fbs, quantities] = parse_checkout_request(json_data)
+items = []
+total = 0
+for  i, fb  in  enumerate(fbs):
+	euro = str(fb.price)
+	euro = euro[:-2] + &quot;.&quot; + euro[-2:]
+	items.append(
+	{
+		&quot;name&quot;: fb.name,
+		&quot;sku&quot;: fb.id,
+		&quot;unit_amount&quot;: {
+			&quot;currency_code&quot;: &quot;EUR&quot;,
+			&quot;value&quot;: euro,
+		},
+		&quot;quantity&quot;: str(quantities[i]),
+		&quot;category&quot;: &quot;DIGITAL_GOODS&quot;,
+	}
+)
+total += fb.price * quantities[i]
+total = str(total)
+total = total[:-2] + &quot;.&quot; + total[-2:]
+res = {
+	&quot;purchase_units&quot;: [
+	{
+		&quot;custom_id&quot;: get_jwt_identity(),
+		&quot;amount&quot;: {
+			&quot;currency_code&quot;: &quot;EUR&quot;,
+			&quot;value&quot;: total,
+			&quot;breakdown&quot;: {
+			&quot;item_total&quot;: {
+				&quot;currency_code&quot;: &quot;EUR&quot;,
+				&quot;value&quot;: total,
+				},
+			},
+		},
+		&quot;items&quot;: items,
+	}],
+}
+return  res
+</code></pre><h3 id=paypal_ipn_listener>paypal_ipn_listener</h3><p>This endpoint will be called from paypal until he gets the response</p><p>For sandbox ipn this is the string in the config.json: <code>"PAYPAL_IPN_VALIDATE_URL":"https://ipnpb.sandbox.paypal.com/cgi-bin/webscr"</code></p><p>Meanwhile the live url is: <code>https://ipnpb.paypal.com/cgi-bin/webscr</code></p><p>The right method to get data from request is: <code>request.form.to_dict()</code></p><p>The header of the validation ipn should be set with: <code>"User-Agent": "Flask-IPN-Verification-Script"</code></p><p>This endpoist is POST and have to:</p><ul><li>verify that it is called from paypal ipn (it will respond with <code>VERIFIED</code> if it is trusted)</li><li>verify that it isn&rsquo;t a dupplicate call or be idempotent</li><li>respond to paypal with status 200 as early as possible</li><li>fulfill order updating database and client</li></ul><p>paypal_ipn_listener function:</p><pre><code>payload = request.form.to_dict()
+validate_data = &quot;&quot;
+for  key, value  in  payload.items():
+	validate_data += &quot;&amp;%s=%s&quot; % (str(key), str(value))
+validate_url = &quot;%s?cmd=_notify-validate%s&quot; % (
+API.config[&quot;PAYPAL_IPN_VALIDATE_URL&quot;], validate_data)
+h = {&quot;User-Agent&quot;: &quot;Flask-IPN-Verification-Script&quot;, &quot;Connection&quot;: &quot;Close&quot;}
+r = requests.post(validate_url, headers=h)
+if  r.text != &quot;VERIFIED&quot;:
+	raise  APIException(&quot;IPN non valida&quot;)
+# TODO check the txn_id against the previous PayPal transaction that you processed to ensure the IPN message is not a duplicate
+if  payload[&quot;payment_status&quot;] != &quot;Completed&quot;:
+	raise  APIException(payload[&quot;payment_status&quot;])
+user_id = payload[&quot;custom&quot;]
+ids = []
+for  i  in  range(int(payload[&quot;num_cart_items&quot;])):
+	index = str(i + 1)
+	release_footballer_id = payload[&quot;item_number&quot; + index]
+	release_footballer_quantity = payload[&quot;quantity&quot; + index]
+	ids.append(release_footballer_id)
+# TODO update database and client
+return {}
+</code></pre><h2 id=paypal-config>Paypal config</h2><ol><li>create Paypal account</li><li>create Paypal sandbox application and get client-id</li><li>create Paypal sandbox merchant account, set password and login</li><li>create Paypal sandbox buyer account, set password and login</li><li>check that the sandbox account are binded to the sandbox application which you are using</li><li>create ipn service (under notification) and set the URL to your server paypal_ipn_listener endpoint</li></ol></div><div class=btn-improve-page><a href=https://github.com/mariuschiriac/mariuschiriac.github.io/edit/master/content/posts/client-server/paypal_button.md><i class="fas fa-code-branch"></i>Improve this page</a></div><hr><div class="row next-prev-navigator"><div class="col-md-12 next-article"><a href=/posts/client-server/stripe_checkout/ class="btn btn-outline-info"><span>Next <i class="fas fa-chevron-circle-right"></i></span><br><span>Stripe payment React-Flask</span></a></div></div><hr></div></div></div></section><section class=toc-section id=toc-section><div class=toc-holder><h5 class="text-center pl-3">Table of Contents</h5><hr><div class=toc><nav id=TableOfContents><ul><li><a href=#versions>versions</a></li><li><a href=#payment-flow>Payment Flow</a></li><li><a href=#react-front-end>React (front-end)</a><ul><li><a href=#indextsx>index.tsx</a></li><li><a href=#modelspaymentts>models/Payment.ts</a></li><li><a href=#apits>api.ts</a></li><li><a href=#carttsx>cart.tsx</a></li></ul></li><li><a href=#flask-back-end>Flask (back-end)</a><ul><li><a href=#create_checkout_session>create_checkout_session</a></li><li><a href=#paypal_ipn_listener>paypal_ipn_listener</a></li></ul></li><li><a href=#paypal-config>Paypal config</a></li></ul></nav></div></div></section></div><footer class="container-fluid text-center align-content-center footer pb-2"><div class="container pt-5"><div class="row text-left"><div class="col-md-4 col-sm-12"><h5>Navigation</h5><ul><li class=nav-item><a class=smooth-scroll href=#about>About</a></li><li class=nav-item><a class=smooth-scroll href=#skills>Skills</a></li><li class=nav-item><a class=smooth-scroll href=#experiences>Experiences</a></li><li class=nav-item><a class=smooth-scroll href=#recent-posts>Recent Posts</a></li><li class=nav-item><a class=smooth-scroll href=#projects>Projects</a></li></ul></div><div class="col-md-4 col-sm-12"><h5>Contact me:</h5><ul><li><span>Email:</span> <span>redarked@gmail.com</span></li><li><span>Phone:</span> <span>+39 3880947809</span></li></ul></div></div></div><hr><div class=container><div class="row text-left"><div class=col-md-4><a id=theme href=https://github.com/hossainemruz/toha target=#><img src=/assets/images/inverted-logo.png>
+Toha</a></div><div class="col-md-4 text-center">© 2021 Marius Chiriac.</div><div class="col-md-4 text-right"><a id=hugo href=https://gohugo.io/>Powered by
+<img src=/assets/images/hugo-logo-wide.svg alt="Hugo Logo" height=18></a></div></div></div></footer><script src=/assets/js/jquery-3.4.1.min.js></script><script src=/assets/js/popper.min.js></script><script src=/assets/js/bootstrap.min.js></script><script src=/assets/js/navbar.js></script><script src=/assets/js/main.js></script><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js></script><script src=/assets/js/single.js></script><script>hljs.initHighlightingOnLoad();</script></body></html>
